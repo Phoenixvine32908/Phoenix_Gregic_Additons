@@ -1,4 +1,4 @@
-package com.example.examplemod;
+package net.phoenix.core;
 
 import com.gregtechceu.gtceu.api.addon.GTAddon;
 import com.gregtechceu.gtceu.api.addon.IGTAddon;
@@ -10,11 +10,11 @@ import java.util.function.Consumer;
 
 @SuppressWarnings("unused")
 @GTAddon
-public class ExampleGTAddon implements IGTAddon {
+public class PhoenixGTAddon implements IGTAddon {
 
     @Override
     public GTRegistrate getRegistrate() {
-        return ExampleMod.EXAMPLE_REGISTRATE;
+        return PhoenixCore.EXAMPLE_REGISTRATE;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class ExampleGTAddon implements IGTAddon {
 
     @Override
     public String addonModId() {
-        return ExampleMod.MOD_ID;
+        return PhoenixCore.MOD_ID;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class ExampleGTAddon implements IGTAddon {
      * GregitasRecipeCapabilities.PRESSURE, false);
      * public static final ContentJS<Double> PRESSURE_OUT = new ContentJS<>(NumberComponent.ANY_DOUBLE,
      * GregitasRecipeCapabilities.PRESSURE, true);
-     * 
+     *
      * @Override
      * public void registerRecipeKeys(KJSRecipeKeyEvent event) {
      * event.registerKey(CustomRecipeCapabilities.PRESSURE, Pair.of(PRESSURE_IN, PRESSURE_OUT));
