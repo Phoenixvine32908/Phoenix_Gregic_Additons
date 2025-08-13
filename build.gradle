@@ -113,6 +113,7 @@ apply from: "$rootDir/gradle/scripts/spotless.gradle"
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
+
     // Mixin
     annotationProcessor "org.spongepowered:mixin:0.8.7:processor"
 

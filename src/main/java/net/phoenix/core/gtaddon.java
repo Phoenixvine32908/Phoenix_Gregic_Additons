@@ -10,11 +10,11 @@ import java.util.function.Consumer;
 
 @SuppressWarnings("unused")
 @GTAddon
-public class PhoenixGTAddon implements IGTAddon {
+public class gtaddon implements IGTAddon {
 
     @Override
     public GTRegistrate getRegistrate() {
-        return PhoenixCore.EXAMPLE_REGISTRATE;
+        return phoenixcore.EXAMPLE_REGISTRATE;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class PhoenixGTAddon implements IGTAddon {
 
     @Override
     public String addonModId() {
-        return PhoenixCore.MOD_ID;
+        return phoenixcore.MOD_ID;
     }
 
     @Override

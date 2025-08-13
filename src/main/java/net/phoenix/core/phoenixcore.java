@@ -22,14 +22,14 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(PhoenixCore.MOD_ID)
-public class PhoenixCore {
+@Mod(phoenixcore.MOD_ID)
+public class phoenixcore {
 
     public static final String MOD_ID = "phoenixcore";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static GTRegistrate EXAMPLE_REGISTRATE = GTRegistrate.create(PhoenixCore.MOD_ID);
+    public static GTRegistrate EXAMPLE_REGISTRATE = GTRegistrate.create(phoenixcore.MOD_ID);
 
-    public PhoenixCore() {
+    public phoenixcore() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
@@ -80,7 +80,7 @@ public class PhoenixCore {
      * @param event
      */
     private void addMaterialRegistries(MaterialRegistryEvent event) {
-        GTCEuAPI.materialManager.createRegistry(PhoenixCore.MOD_ID);
+        GTCEuAPI.materialManager.createRegistry(phoenixcore.MOD_ID);
     }
 
     /**
