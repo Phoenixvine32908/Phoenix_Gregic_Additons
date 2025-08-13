@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 
 @SuppressWarnings("unused")
 @GTAddon
-public class gtaddon implements IGTAddon {
+public class PhoenixGTAddon implements IGTAddon {
 
     @Override
     public GTRegistrate getRegistrate() {
