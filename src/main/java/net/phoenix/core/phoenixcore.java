@@ -20,6 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.phoenix.core.common.data.materials.PhoenixMaterials;
 import net.phoenix.core.item.ModItems;
 
 import org.apache.logging.log4j.LogManager;
@@ -101,8 +102,9 @@ public class phoenixcore {
      *
      * @param event
      */
+
     private void addMaterials(MaterialEvent event) {
-        // CustomMaterials.init();
+        PhoenixMaterials.register();
     }
 
     /**
