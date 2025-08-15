@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.phoenix.core.common.data.materials.PhoenixElements;
 
 import java.util.function.Consumer;
 
@@ -33,6 +34,12 @@ public class PhoenixGTAddon implements IGTAddon {
     @Override
     public void addRecipes(Consumer<FinishedRecipe> provider) {
         // CustomRecipes.init(provider);
+    }
+
+    @Override
+    public void registerElements() {
+        IGTAddon.super.registerElements();
+        PhoenixElements.init();
     }
 
     // If you have custom ingredient types, uncomment this & change to match your capability.

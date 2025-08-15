@@ -27,9 +27,12 @@ public class PhoenixMaterials {
         EightyFivePercentPureNevvonianSteel = new Material.Builder(
                 phoenixcore.id("eighty_five_percent_pure_nevvonian_steel"))
                 .ingot()
-                .color(1739797)
+                .color(0x4B0082)
+                .secondaryColor(0x000000)
+                .element(PhoenixElements.APNS)
+                .formula("APNS")
                 .secondaryColor(593856)
-                .iconSet(PhoenixMaterialSet.ALMOST_PURE_NEVVONIAN_STEEL)
+                .iconSet(PhoenixMaterialSet.ALMOST_PURE_NEVONIAN_STEEL)
                 .buildAndRegister();
     }
 }

@@ -11,6 +11,7 @@ import com.gregtechceu.gtceu.api.sound.SoundEntry;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.phoenix.core.common.data.materials.PhoenixMaterials;
 import net.phoenix.core.item.ModItems;
 
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,6 +34,7 @@ public class phoenixcore {
     public static final String MOD_ID = "phoenixcore";
     public static final Logger LOGGER = LogManager.getLogger();
     public static GTRegistrate EXAMPLE_REGISTRATE = GTRegistrate.create(phoenixcore.MOD_ID);
+    public static RegistryEntry<CreativeModeTab> PHOENIX_CREATIVE_TAB = null;
 
     public phoenixcore() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -49,6 +52,8 @@ public class phoenixcore {
         modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         modEventBus.addGenericListener(SoundEntry.class, this::registerSounds);
         modEventBus.addListener(this::addCreative);
+        modEventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
+        modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         // Most other events are fired on Forge's bus.
         // If we want to use annotations to register event listeners,
         // we need to register our object like this!

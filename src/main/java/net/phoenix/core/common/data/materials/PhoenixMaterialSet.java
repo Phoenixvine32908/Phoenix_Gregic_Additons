@@ -6,8 +6,8 @@ import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIcon
 
 public class PhoenixMaterialSet {
 
-    public static final MaterialIconSet ALMOST_PURE_NEVVONIAN_STEEL = new MaterialIconSet("almost_pure_nevvonian_steel",
-            DULL);
+    public static final MaterialIconSet ALMOST_PURE_NEVONIAN_STEEL = new MaterialIconSet("almost_pure_nevonian_steel",
+            SHINY);
 
     public static void init() {}
 }
