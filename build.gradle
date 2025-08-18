@@ -1,20 +1,9 @@
-buildscript {
-    repositories {
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-    }
-}
-
 plugins {
     id "idea"
     id "maven-publish"
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'com.diffplug.spotless' version '7.0.2'
-    id 'org.spongepowered.mixin' version '0.7+'
 }
 
 def generatedResources = file("src/generated")
@@ -38,6 +27,11 @@ repositories {
     maven {
         name 'FirstDarkDev'
         url "https://maven.firstdarkdev.xyz/snapshots/"
+    }
+    maven {
+
+        // latvian.dev Maven (KubeJS and Rhino)
+        url = "https://maven.latvian.dev/releases"
     }
     maven { // Registrate
         url = "https://maven.tterrag.com/"
@@ -63,9 +57,9 @@ repositories {
     }
     maven {
         // EMI
-		name = "TerraformersMC"
-		url = "https://maven.terraformersmc.com/"
-	}
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/"
+    }
 
     maven {
         url = "https://maven.architectury.dev"
@@ -73,7 +67,18 @@ repositories {
     maven {
         url = "https://thedarkcolour.github.io/KotlinForForge/"
     }
-
+    maven {
+        name = "ftbMavenReleases"
+        url = uri("https://maven.ftb.dev/releases")
+    }
+    maven {
+        name "Modmaven"
+        url "https://modmaven.dev/"
+        // For Gradle 5.1 and above, limit it to just AE2
+        content {
+            includeGroup 'appeng'
+        }
+    }
 }
 
 version = mod_version
@@ -102,20 +107,16 @@ minecraft {
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--existing-mod', 'gtceu'
         }
     }
 }
 
 
-apply plugin: 'org.spongepowered.mixin'
 apply from: "$rootDir/gradle/scripts/spotless.gradle"
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-
-
-    // Mixin
-    annotationProcessor "org.spongepowered:mixin:0.8.7:processor"
 
     // JEI, EMI, Jade
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
@@ -123,21 +124,22 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
     runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
     runtimeOnly fg.deobf("curse.maven:jade-324717:5390389")
+    compileOnly fg.deobf("curse.maven:jade-324717:5390389")
 
     // GregTech and dependencies
     implementation fg.deobf("com.gregtechceu.gtceu:gtceu-${minecraft_version}:${gtceu_version}:slim") { transitive = false }
     implementation fg.deobf("com.lowdragmc.ldlib:ldlib-forge-${minecraft_version}:${ldlib_version}") { transitive = false }
     implementation fg.deobf("com.tterrag.registrate:Registrate:${registrate_version}")
-    runtimeOnly fg.deobf("dev.toma.configuration:configuration-forge-${minecraft_version}:${configuration_version}")
+    implementation fg.deobf("dev.latvian.mods:kubejs-forge:${kubejs_version}")
+    implementation fg.deobf("dev.latvian.mods:rhino-forge:${rhino_version}")
+    implementation fg.deobf("dev.toma.configuration:configuration-forge-${minecraft_version}:${configuration_version}")
+    runtimeOnly fg.deobf("dev.architectury:architectury-forge:${architectury_version}")
+    implementation fg.deobf("dev.ftb.mods:ftb-library-forge:${ftblibrary_version}")
+    implementation fg.deobf("dev.ftb.mods:ftb-teams-forge:${ftbteams_version}")
 
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
-}
-
-mixin {
-    add sourceSets.main, "${mod_id}.refmap.json"
-    config "core.mixins.json"
 }
 
 tasks.named('processResources', ProcessResources).configure {

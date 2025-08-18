@@ -1,14 +1,18 @@
 package net.phoenix.core.common.machine;
 
 import com.gregtechceu.gtceu.GTCEu;
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
-import com.gregtechceu.gtceu.api.machine.multiblock.WorkableElectricMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 import com.gregtechceu.gtceu.api.pattern.Predicates;
-import com.gregtechceu.gtceu.common.data.GTMaterials;
-import com.gregtechceu.gtceu.common.data.GTRecipeTypes;
+import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
+import com.gregtechceu.gtceu.common.data.GTRecipeModifiers;
 
+import net.minecraft.world.level.block.Block;
+import net.phoenix.core.common.data.PhoenixRecipeTypes;
+import net.phoenix.core.common.machine.multiblock.CreativeEnergyMultiMachine;
 import net.phoenix.core.phoenixcore;
 
 import static com.gregtechceu.gtceu.api.GTValues.*;
@@ -19,47 +23,81 @@ import static net.phoenix.core.common.registry.PhoenixRegistration.REGISTRATE;
 @SuppressWarnings("unused")
 public class PhoenixMachines {
 
-    static {
+    public static MultiblockMachineDefinition DANCE;
+
+    public static void init() {
         REGISTRATE.creativeModeTab(() -> phoenixcore.PHOENIX_CREATIVE_TAB);
-    }
 
-    public static MultiblockMachineDefinition PTERB_MACHINE = null;
+        // 2. Mova toda a lógica de registro para dentro do método init()
+        DANCE = REGISTRATE
+                .multiblock("dance", CreativeEnergyMultiMachine::new)
+                .langValue("dance")
+                .rotationState(RotationState.NON_Y_AXIS)
+                .recipeType(PhoenixRecipeTypes.PLEASE) // Agora isso não será mais nulo
+                .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
+                        GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
 
-    static {
-        PTERB_MACHINE = REGISTRATE
-                .multiblock("pterb_machine", WorkableElectricMultiblockMachine::new)
-                .langValue("Wireless Active Transformer")
-                .rotationState(RotationState.ALL)
-                .recipeType(GTRecipeTypes.DUMMY_RECIPES)
-                .appearanceBlock(CASING_PALLADIUM_SUBSTATION)
-                .pattern((definition) -> FactoryBlockPattern.start()
-                        // spotless:off
-                            .aisle("###XXX###", "####F####", "#########", "####H####", "####H####", "####H####", "####H####", "####H####")
-                            .aisle("#XXXXXXX#", "###FHF###", "####H####", "####H####", "####H####", "####F####", "#########", "#########")
-                            .aisle("#XXHHHXX#", "#########", "#########", "#########", "####F####", "####F####", "#########", "#########")
-                            .aisle("XXHHHHHXX", "#F#####F#", "#########", "####S####", "###SSS###", "###SSS###", "###S#S###", "#########")
-                            .aisle("XXHHHHHXX", "FH##H##HF", "#H##C##H#", "HH#SSS#HH", "HHFSSSFHH", "HFFSSSFFH", "H#######H", "H#######H")
-                            .aisle("XXHHHHHXX", "#F#####F#", "#########", "####S####", "###SSS###", "###SSS###", "###S#S###", "#########")
-                            .aisle("#XXHHHXX#", "#########", "#########", "#########", "####F####", "####F####", "#########", "#########")
-                            .aisle("#XXXXXXX#", "###FHF###", "####H####", "####H####", "####H####", "####F####", "#########", "#########")
-                            .aisle("###XXX###", "####F####", "#########", "####H####", "####H####", "####H####", "####H####", "####H####")
-                            // spotless:on
-                        .where('#', any())
-                        .where('X',
-                                blocks(CASING_PALLADIUM_SUBSTATION.get()).setMinGlobalLimited(30)
-                                        .or(Predicates.autoAbilities(definition.getRecipeTypes())))
-                        .where('S', blocks(SUPERCONDUCTING_COIL.get()))
-                        .where('H', blocks(HIGH_POWER_CASING.get()))
-                        .where('C', controller(blocks(definition.getBlock())))
-                        .where('F', frames(GTMaterials.Neutronium))
+                .pattern(definition -> FactoryBlockPattern.start()
+                        .aisle("AAAAAABBBAABBBAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA")
+                        .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAAABBBBBBBBBBAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAABBAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA")
+                        .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAABBBBBBBBBBBBAAAAA", "AAAAAAABBBBBBBAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAABBBBAAAAAAAAA",
+                                "AAAAAAAABBBBAAAAAAAAA", "AAAAAAAABBBBAAAAAAAAA", "AAAAAAAAABBAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA")
+                        .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAABBBAAAAAAABBAAAAA", "AAAAABBBBBBBBBBAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAABBBBBBBBBAAAAAA", "AAAAABBBBBBBBBBAAAAAA", "AAAAABBBBBBBBBBAAAAAA",
+                                "AAAAABBBBBBBBBBAAAAAA")
+                        .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAAABAAAAAAAABBAAAAA", "AAAAABBBAABBBBBAAAAAA",
+                                "AAAAAABBBBBBBBAAAAAAA", "AAAAAAABBBBBBAAAAAAAA", "AAAAAABBBBBBBBAAAAAAA",
+                                "AAAAABBAAAAAAABBAAAAA", "AABBBBAAAAAAAAABBBBAA", "ABBBBBAAAAAAAAABBBBBA",
+                                "ABBBBBBBBBBBBBBBAAAAA")
+                        .aisle("AAAAABBBBBBBBBBAAAAAA", "AAAAABBAAAAAABBAAAAAA", "AAAAAABBAAAAABAAAAAAA",
+                                "AAAAAAABAAAABBAAAAAAA", "AAAAAAABAAAAABAAAAAAA", "AAAAAABBAAAAABAAAAAAA",
+                                "AAAAABBAAAAAAABBBAAAA", "ABBBBBAAAAAAAAAABBBBA", "ABBAAAAAAAAAAAAABBBBB",
+                                "BBBBBBBBBBBBBBBBBBBBB")
+                        .aisle("AAAAABBBBBBBBBBAAAAAA", "AAAAABBAAAAAABBAAAAAA", "AAAAAABBAAAAABAAAAAAA",
+                                "AAAAAAABAAAABBAAAAAAA", "AAAAAAABAAAAABAAAAAAA", "AAAAAABBAAAAABAAAAAAA",
+                                "AAAAABBAAAAAAABBBAAAA", "ABBBBBAAAAAAAAAABBBBA", "ABBAAAAAAAAAAAAABBBBB",
+                                "BBBBBBBBBBBBBBBBBBBBB")
+                        .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAAABAAAAAAAABBAAAAA", "AAAAABBBAAAAABBAAAAAA",
+                                "AAAAAABBBBBBBBAAAAAAA", "AAAAAAABBBBBBAAAAAAAA", "AAAAAABBBBBBBBAAAAAAA",
+                                "AAAAABBAAAAAAABBAAAAA", "AABBBBAAAAAAAAABBBBAA", "ABBBBBAAAAAAAAABBBBBA",
+                                "ABBBBBBBBBBBBBBBAAAAA")
+                        .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAABBBAAAAAAABBAAAAA", "AAAAAABBBBBBBBBAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAABBAAAAAAAAAA",
+                                "AAAAAABBBBBBBBBAAAAAA", "AAAAABBBBBBBBBBAAAAAA", "AAAAABBBBBBBBBBAAAAAA",
+                                "AAAAABBBBBBBBBBAAAAAA")
+                        .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAABBBBBBBBBBBBAAAAA", "AAAAAABBBBBBBBAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAABBBBAAAAAAAAA",
+                                "AAAAAAAABBBBAAAAAAAAA", "AAAAAAAABBBBAAAAAAAAA", "AAAAAAAAABBAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA")
+                        .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAAABBBBBBBBBBAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAABBAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA")
+                        .aisle("AAAAAABBBAABDBAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
+                                "AAAAAAAAAAAAAAAAAAAAI")
+                        .where("A", any())
+                        .where("I",
+                                Predicates
+                                        .blocks(PartAbility.INPUT_ENERGY.getBlocks(GTValues.ZPM).toArray(Block[]::new))
+                                        .setMaxGlobalLimited(2))
+                        .where('D', controller(blocks(definition.getBlock())))
+                        .where("B", blocks(BRONZE_HULL.get()).setMinGlobalLimited(575)
+                                .or(autoAbilities(definition.getRecipeTypes()))
+                                .or(autoAbilities(true, false, true)))
                         .build())
                 .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_palladium_substation"),
                         GTCEu.id("block/multiblock/data_bank"))
-                .allowExtendedFacing(true)
-                .hasBER(true)
                 .register();
-
     }
-
-    public static void init() {}
 }

@@ -21,8 +21,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.phoenix.core.common.block.PhoenixBlocks;
+import net.phoenix.core.common.data.PhoenixItems;
+import net.phoenix.core.common.data.PhoenixRecipeTypes;
 import net.phoenix.core.common.data.materials.PhoenixMaterials;
-import net.phoenix.core.item.ModItems;
+import net.phoenix.core.common.machine.PhoenixMachines;
+import net.phoenix.core.common.registry.PhoenixRegistration;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import org.apache.logging.log4j.LogManager;
@@ -37,9 +41,11 @@ public class phoenixcore {
     public static RegistryEntry<CreativeModeTab> PHOENIX_CREATIVE_TAB = null;
 
     public phoenixcore() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        // This static init call is a common pattern to ensure your Registrate instance
+        // is initialized at the correct time.
+        phoenixcore.init();
 
-        ModItems.register(modEventBus);
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
@@ -48,24 +54,33 @@ public class phoenixcore {
         modEventBus.addListener(this::addMaterials);
         modEventBus.addListener(this::modifyMaterials);
 
+        // This is the correct way to listen for and register GregTech-specific things,
+        // as shown in the GTCA example.
         modEventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
-        modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         modEventBus.addGenericListener(SoundEntry.class, this::registerSounds);
-        modEventBus.addListener(this::addCreative);
-        modEventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
-        // Most other events are fired on Forge's bus.
-        // If we want to use annotations to register event listeners,
-        // we need to register our object like this!
-        MinecraftForge.EVENT_BUS.register(this);
 
-        EXAMPLE_REGISTRATE.registerRegistrate();
+        modEventBus.addListener(this::addCreative);
+
+        // Most other events are fired on Forge's bus.
+        MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    /**
+     * This method is responsible for registering the Registrate instance,
+     * which handles all blocks, items, etc. that were defined.
+     */
+    public static void init() {
+        // This needs to be called to trigger the Registrate registration process.
+        PhoenixRegistration.REGISTRATE.registerRegistrate();
+        PhoenixBlocks.init();
+        PhoenixItems.init();
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
-            event.accept(ModItems.SAPPHIRE);
-            event.accept(ModItems.RAW_SAPPHIRE);
+            // event.accept(ModItems.SAPPHIRE);
+            // event.accept(ModItems.RAW_SAPPHIRE);
         }
     }
 
@@ -128,17 +143,7 @@ public class phoenixcore {
      * @param event
      */
     private void registerRecipeTypes(GTCEuAPI.RegisterEvent<ResourceLocation, GTRecipeType> event) {
-        // CustomRecipeTypes.init();
-    }
-
-    /**
-     * Used to register your own new RecipeTypes.
-     * Call init() from your Machine class(es) here
-     *
-     * @param event
-     */
-    private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
-        // CustomMachines.init();
+        PhoenixRecipeTypes.init();
     }
 
     /**
@@ -149,5 +154,15 @@ public class phoenixcore {
      */
     public void registerSounds(GTCEuAPI.RegisterEvent<ResourceLocation, SoundEntry> event) {
         // CustomSounds.init();
+    }
+
+    /**
+     * Used to register your own new Machines.
+     * Call init() from your Machine class(es) here
+     *
+     * @param event
+     */
+    private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
+        PhoenixMachines.init();
     }
 }
