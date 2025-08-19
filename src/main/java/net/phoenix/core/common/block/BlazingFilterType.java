@@ -16,20 +16,23 @@ import org.jetbrains.annotations.NotNull;
 public enum BlazingFilterType implements IFilterType {
 
     // Define the custom filter type entry, linking it to your BlazingCleanroom class.
-    FILTER_CASING_BLAZING("blazing_filter_casing", BlazingCleanroom.BLAZING_CLEANROOM);
+    FILTER_CASING_BLAZING("blazing_filter_casing", 1, BlazingCleanroom.BLAZING_CLEANROOM);
 
     private final String name;
+    private final int tier;
     @Getter
     private final CleanroomType cleanroomType;
 
     /**
      * Constructs a new BlazingFilterType enum entry.
+     * * @param name The unique name of the filter type.
      * 
-     * @param name          The unique name of the filter type.
+     * @param tier          The tier of the filter type.
      * @param cleanroomType The custom cleanroom type associated with this filter.
      */
-    BlazingFilterType(String name, CleanroomType cleanroomType) {
+    BlazingFilterType(String name, int tier, CleanroomType cleanroomType) {
         this.name = name;
+        this.tier = tier;
         this.cleanroomType = cleanroomType;
     }
 

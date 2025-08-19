@@ -8,7 +8,6 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.phoenix.core.common.machine.PhoenixMachines;
-import net.phoenix.core.common.machine.multiblock.BlazingCleanroom;
 
 import java.util.function.Consumer;
 
@@ -18,7 +17,6 @@ import static com.gregtechceu.gtceu.common.data.GTMachines.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.gregtechceu.gtceu.common.data.GTRecipeTypes.*;
 import static com.gregtechceu.gtceu.data.recipe.GTCraftingComponents.*;
-import static net.phoenix.core.common.data.PhoenixRecipeTypes.PLEASE;
 
 public class PhoenixMachineRecipes {
 
@@ -38,17 +36,6 @@ public class PhoenixMachineRecipes {
                 .outputItems(PhoenixMachines.DANCE)
                 .stationResearch(b -> b
                         .researchStack(GTMultiMachines.ACTIVE_TRANSFORMER.asStack()).CWUt(16))
-                .save(provider);
-
-        PLEASE.recipeBuilder("please")
-                .inputItems(GTMultiMachines.ACTIVE_TRANSFORMER)
-                .EUt(GTValues.VA[LV]).duration(40)
-                .duration(1200)
-                .cleanroom(BlazingCleanroom.BLAZING_CLEANROOM)
-                .outputItems(PhoenixItems.basic_fuel_rod)
-                .stationResearch(b -> b
-                        .researchStack(GTMultiMachines.ACTIVE_TRANSFORMER.asStack()).CWUt(16))
-
                 .save(provider);
     }
 }

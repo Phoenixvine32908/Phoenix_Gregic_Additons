@@ -1,41 +1,63 @@
 package net.phoenix.core.common.block;
 
+import com.gregtechceu.gtceu.api.block.ActiveBlock;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.common.block.CoilBlock;
+import com.gregtechceu.gtceu.utils.GTUtil;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
+import net.phoenix.core.common.data.materials.PhoenixMaterials;
 import net.phoenix.core.phoenixcore;
 
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.Supplier;
+import java.util.List;
 
-public class PhoenixCoilBlock extends CoilBlock implements EntityBlock {
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+public class PhoenixCoilBlock extends ActiveBlock {
+
+    public ICoilType coilType;
 
     public PhoenixCoilBlock(Properties properties, ICoilType coilType) {
-        super(properties, coilType);
+        super(properties);
+        this.coilType = coilType;
     }
 
-    @Nullable
     @Override
-    public BlockEntity newBlockEntity(@NotNull BlockPos pos, @NotNull BlockState state) {
-        return PhoenixBlocks.COIL_CAUSAL_FABRIC.getSibling(Registries.BLOCK_ENTITY_TYPE)
-                .get().create(pos, state);
+    public void appendHoverText(ItemStack stack, @Nullable BlockGetter level, List<Component> tooltip,
+                                TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+        if (GTUtil.isShiftDown()) {
+            int coilTier = coilType.getTier();
+            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_heat", coilType.getCoilTemperature()));
+            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_smelter"));
+            tooltip.add(
+                    Component.translatable("block.gtceu.wire_coil.tooltip_parallel_smelter", coilType.getLevel() * 32));
+            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_energy_smelter",
+                    Math.max(1, (4 * coilType.getLevel() * 32 / (8 * coilType.getEnergyDiscount())))));
+            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_pyro"));
+            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_speed_pyro",
+                    coilTier == 0 ? 75 : 50 * (coilTier + 1)));
+            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_cracking"));
+            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_energy_cracking", 100 - 10 * coilTier));
+        } else {
+            tooltip.add(Component.translatable("block.gtceu.wire_coil.tooltip_extended_info"));
+        }
     }
 
     public enum CoilType implements StringRepresentable, ICoilType {
 
-        PRISMATIC_TUNGSTENSTEEL("prismatic_tungstensteel", 4500, 3, 4, 2, () -> CosmicMaterials.PrismaticTungstensteel,
-                phoenixcore.id("block/casings/coils/prismatic_tungstensteel"));
+        COIL_TRUE_HEAT_STABLE("true_heat_stable", 12000, 10, 12, 5, PhoenixMaterials.PHOENIX_ENRICHED_TRITANIUM,
+                phoenixcore.id("block/true_heat_stable_coil_block"));
 
         @NotNull
         @Getter
@@ -43,32 +65,35 @@ public class PhoenixCoilBlock extends CoilBlock implements EntityBlock {
         // electric blast furnace properties
         @Getter
         private final int coilTemperature;
-        @Getter
-        private final int tier;
+
         // multi smelter properties
         @Getter
         private final int level;
         @Getter
         private final int energyDiscount;
+        @Getter
+        private final int tier;
         @NotNull
-        private final Supplier<Material> material;
+        @Getter
+        private final Material material;
         @NotNull
         @Getter
         private final ResourceLocation texture;
 
-        CoilType(String name, int coilTemperature, int tier, int level, int energyDiscount, Supplier<Material> material,
+        CoilType(String name, int coilTemperature, int level, int energyDiscount, int tier, Material material,
                  ResourceLocation texture) {
             this.name = name;
             this.coilTemperature = coilTemperature;
-            this.tier = tier;
             this.level = level;
             this.energyDiscount = energyDiscount;
+            this.tier = tier;
             this.material = material;
             this.texture = texture;
         }
 
-        public Material getMaterial() {
-            return material.get();
+        @Override
+        public int getTier() {
+            return this.tier;
         }
 
         @NotNull
