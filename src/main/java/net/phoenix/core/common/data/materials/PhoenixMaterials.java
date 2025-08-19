@@ -2,6 +2,7 @@ package net.phoenix.core.common.data.materials;
 
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialIconSet;
 import com.gregtechceu.gtceu.api.fluids.FluidBuilder;
 import com.gregtechceu.gtceu.api.fluids.FluidState;
 
@@ -12,6 +13,7 @@ public class PhoenixMaterials {
     public static Material QuantumCoolant;
     public static Material ExtremelyModifiedSpaceGradeSteel;
     public static Material EightyFivePercentPureNevvonianSteel;
+    public static Material ENTROPIC;
 
     public static void register() {
         QuantumCoolant = new Material.Builder(phoenixcore.id("quantum_coolant"))
@@ -27,12 +29,17 @@ public class PhoenixMaterials {
         EightyFivePercentPureNevvonianSteel = new Material.Builder(
                 phoenixcore.id("eighty_five_percent_pure_nevvonian_steel"))
                 .ingot()
-                .color(0x4B0082)
-                .secondaryColor(0x000000)
                 .element(PhoenixElements.APNS)
                 .formula("APNS")
                 .secondaryColor(593856)
                 .iconSet(PhoenixMaterialSet.ALMOST_PURE_NEVONIAN_STEEL)
+                .buildAndRegister();
+        ENTROPIC = new Material.Builder(
+                phoenixcore.id("eighty_five_percent_pure_nevvonian_steel"))
+                .ingot()
+                .formula("APNS")
+                .secondaryColor(593856)
+                .iconSet(MaterialIconSet.SHINY)
                 .buildAndRegister();
     }
 }

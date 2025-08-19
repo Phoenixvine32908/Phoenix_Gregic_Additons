@@ -8,6 +8,7 @@ import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.phoenix.core.common.machine.PhoenixMachines;
+import net.phoenix.core.common.machine.multiblock.BlazingCleanroom;
 
 import java.util.function.Consumer;
 
@@ -41,17 +42,10 @@ public class PhoenixMachineRecipes {
 
         PLEASE.recipeBuilder("please")
                 .inputItems(GTMultiMachines.ACTIVE_TRANSFORMER)
-                .inputItems(TagPrefix.plate, GTMaterials.Neutronium, 32)
-                .inputItems(SENSOR.get(GTValues.UV), 8)
-                .inputItems(EMITTER.get(GTValues.UV), 8)
-                .inputItems(FIELD_GENERATOR.get(GTValues.UV), 4)
-                .inputItems(CustomTags.UHV_CIRCUITS, 2)
-                .inputItems(TagPrefix.pipeLargeFluid, GTMaterials.Neutronium, 4)
-                .inputItems(CABLE_QUAD.get(GTValues.UV), 8)
-                .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 32))
                 .EUt(GTValues.VA[LV]).duration(40)
                 .duration(1200)
-                .outputItems(SENSOR_UEV, 2)
+                .cleanroom(BlazingCleanroom.BLAZING_CLEANROOM)
+                .outputItems(PhoenixItems.basic_fuel_rod)
                 .stationResearch(b -> b
                         .researchStack(GTMultiMachines.ACTIVE_TRANSFORMER.asStack()).CWUt(16))
 

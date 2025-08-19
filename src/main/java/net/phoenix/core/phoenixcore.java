@@ -26,6 +26,7 @@ import net.phoenix.core.common.data.PhoenixItems;
 import net.phoenix.core.common.data.PhoenixRecipeTypes;
 import net.phoenix.core.common.data.materials.PhoenixMaterials;
 import net.phoenix.core.common.machine.PhoenixMachines;
+import net.phoenix.core.common.machine.PhoenixResearchMachines;
 import net.phoenix.core.common.registry.PhoenixRegistration;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -164,5 +165,6 @@ public class phoenixcore {
      */
     private void registerMachines(GTCEuAPI.RegisterEvent<ResourceLocation, MachineDefinition> event) {
         PhoenixMachines.init();
+        PhoenixResearchMachines.init();
     }
 }
