@@ -9,6 +9,7 @@ import com.gregtechceu.gtceu.common.machine.multiblock.part.hpca.HPCAComputation
 import com.lowdragmc.lowdraglib.gui.texture.ResourceTexture;
 
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.phoenix.core.configs.PhoenixConfigs;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -79,7 +80,7 @@ public class PhoenixComputationPartMachine extends HPCAComputationPartMachine im
     @Override
     public int getCWUPerTick() {
         if (isDamaged()) return 0;
-        return 24;
+        return PhoenixConfigs.INSTANCE.features.PCUStrength;
     }
 
     /**

@@ -28,7 +28,7 @@ import net.phoenix.core.common.data.materials.PhoenixMaterials;
 import net.phoenix.core.common.machine.PhoenixMachines;
 import net.phoenix.core.common.machine.PhoenixResearchMachines;
 import net.phoenix.core.common.registry.PhoenixRegistration;
-import net.phoenix.core.config.PhoenixConfig;
+import net.phoenix.core.configs.PhoenixConfigs;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import org.apache.logging.log4j.LogManager;
@@ -73,8 +73,8 @@ public class phoenixcore {
      * which handles all blocks, items, etc. that were defined.
      */
     public static void init() {
-        // This needs to be called to trigger the Registrate registration process.
-        PhoenixConfig.init();
+        // Then register everything else.
+        PhoenixConfigs.init();
         PhoenixRegistration.REGISTRATE.registerRegistrate();
         PhoenixBlocks.init();
         PhoenixItems.init();

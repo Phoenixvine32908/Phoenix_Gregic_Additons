@@ -91,6 +91,7 @@ public class PhoenixCoilBlock extends ActiveBlock {
             this.texture = texture;
         }
 
+        @NotNull
         @Override
         public int getTier() {
             return this.tier;
