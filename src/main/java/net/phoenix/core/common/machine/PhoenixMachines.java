@@ -57,6 +57,7 @@ public class PhoenixMachines {
                             .translatable(BlazingCleanroom.BLAZING_CLEANROOM.getTranslationKey())
                             .withStyle(ChatFormatting.RED))))
                     .tier(UHV)
+
                     .overlayTieredHullModel(
                             phoenixcore.id("block/machine/part/overlay_maintenance_blazing_cleaning"))
                     // Tier can always be changed later

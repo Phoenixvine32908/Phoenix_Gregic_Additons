@@ -7,7 +7,7 @@
       "model": {
         "parent": "phoenixcore:block/advanced_phoenix_computation_component_base",
         "textures": {
-          "overlay": "phoenixcore:block/machine/part/hpca/computation/advanced_phoenix_computation_component",
+          "overlay": "gtceu:block/machine/part/hpca/computation/advanced_phoenix_computation_component",
           "overlay_emissive": "gtceu:block/void"
         }
       }
@@ -16,8 +16,8 @@
       "model": {
         "parent": "phoenixcore:block/advanced_phoenix_computation_component_base",
         "textures": {
-          "overlay": "phoenixcore:block/machine/part/hpca/computation/advanced_phoenix_computation_component",
-          "overlay_emissive": "gtceu:block/void"
+          "overlay": "gtceu:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active",
+          "overlay_emissive": "gtceu:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active_emissive"
         }
       }
     },
@@ -25,7 +25,7 @@
       "model": {
         "parent": "phoenixcore:block/advanced_phoenix_computation_component_base",
         "textures": {
-          "overlay": "phoenixcore:block/machine/part/hpca/computation/damaged_advanced",
+          "overlay": "gtceu:block/machine/part/hpca/computation/damaged_advanced",
           "overlay_emissive": "gtceu:block/void"
         }
       }
@@ -34,8 +34,8 @@
       "model": {
         "parent": "phoenixcore:block/advanced_phoenix_computation_component_base",
         "textures": {
-          "overlay": "phoenixcore:block/machine/part/hpca/computation/damaged_advanced",
-          "overlay_emissive": "gtceu:block/void"
+          "overlay": "gtceu:block/machine/part/hpca/computation/damaged_advanced",
+          "overlay_emissive": "gtceu:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active_emissive"
         }
       }
     },
@@ -43,8 +43,8 @@
       "model": {
         "parent": "phoenixcore:block/advanced_phoenix_computation_component_base",
         "textures": {
-          "overlay": "phoenixcore:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active",
-          "overlay_emissive": "phoenixcore:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active_emissive"
+          "overlay": "gtceu:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active",
+          "overlay_emissive": "gtceu:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active_emissive"
         }
       }
     },
@@ -52,8 +52,8 @@
       "model": {
         "parent": "phoenixcore:block/advanced_phoenix_computation_component_base",
         "textures": {
-          "overlay": "phoenixcore:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active",
-          "overlay_emissive": "phoenixcore:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active_emissive"
+          "overlay": "gtceu:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active",
+          "overlay_emissive": "gtceu:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active_emissive"
         }
       }
     },
@@ -61,7 +61,7 @@
       "model": {
         "parent": "phoenixcore:block/advanced_phoenix_computation_component_base",
         "textures": {
-          "overlay": "phoenixcore:block/machine/part/hpca/computation/damaged_advanced",
+          "overlay": "gtceu:block/machine/part/hpca/computation/damaged_advanced",
           "overlay_emissive": "gtceu:block/void"
         }
       }
@@ -70,7 +70,7 @@
       "model": {
         "parent": "phoenixcore:block/advanced_phoenix_computation_component_base",
         "textures": {
-          "overlay": "phoenixcore:block/machine/part/hpca/computation/damaged_advanced",
+          "overlay": "gtceu:block/machine/part/hpca/computation/damaged_advanced",
           "overlay_emissive": "gtceu:block/void"
         }
       }

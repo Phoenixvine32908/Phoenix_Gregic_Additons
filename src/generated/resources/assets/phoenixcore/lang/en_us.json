@@ -1,13 +1,12 @@
 {
+  "block.phoenixcore.active_phoenix_cooling_component": "Active Phoenix Cooling Component",
   "block.phoenixcore.advanced_phoenix_computation_component": "Advanced Phoenix Computation Component",
-  "block.phoenixcore.advanced_phoenix_cooling_component": "Advanced Phoenix Cooling Component",
   "block.phoenixcore.blazing_cleaning_maintenance_hatch": "Blazing Cleaning Maintenance Hatch",
-  "block.phoenixcore.blazing_filter_casing": "Blazing Filter Casing",
   "block.phoenixcore.dance": "dance",
   "block.phoenixcore.phoenix_computation_component": "Phoenix Computation Component",
-  "block.phoenixcore.phoenix_cooling_component": "Phoenix Cooling Component",
   "block.phoenixcore.phoenix_enriched_tritanium_casing": "§6Extremely Heat-Stable Casing",
   "block.phoenixcore.phoenix_gaze_panel": "§cPhoenix Gaze Panel",
+  "block.phoenixcore.phoenix_heat_sink_component": "Phoenix Heat Sink Component",
   "block.phoenixcore.true_heat_stable_coil_block": "True Heat Stable Coil Block",
   "block.phoenixcore.true_phoenix_infused_casing": "§cTrue Phoenix Infused Casing",
   "item.phoenixcore.basic_fuel_rod": "Basic Fuel Rod"

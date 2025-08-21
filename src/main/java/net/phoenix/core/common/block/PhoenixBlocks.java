@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
+import net.phoenix.core.configs.PhoenixConfigs;
 import net.phoenix.core.phoenixcore;
 
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -52,8 +53,12 @@ public class PhoenixBlocks {
     public static BlockEntry<Block> TRUE_PHOENIX_INFUSED_CASING = registerSimpleBlock(
             "§cTrue Phoenix Infused Casing", "true_phoenix_infused_casing",
             "true_phoenix_infused_casing", BlockItem::new);
-    public static final BlockEntry<Block> BLAZING_CLEANROOM_FILTER_CASING = createCleanroomFilter(
-            BlazingFilterType.FILTER_CASING_BLAZING);
+    static {
+        if (PhoenixConfigs.INSTANCE.features.blazingCleanroomEnabled) {
+            final BlockEntry<Block> BLAZING_CLEANROOM_FILTER_CASING = createCleanroomFilter(
+                    BlazingFilterType.FILTER_CASING_BLAZING);
+        }
+    }
 
     private static BlockEntry<Block> createCleanroomFilter(IFilterType filterType) {
         var filterBlock = REGISTRATE.block(filterType.getSerializedName(), Block::new)

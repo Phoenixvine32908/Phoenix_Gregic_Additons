@@ -31,11 +31,31 @@ public class PhoenixConfigs {
         @Configurable
         @Configurable.Comment({ "Whether the Blazing Maintence Hatch is enabled" })
         public boolean blazingHatchEnabled = true;
+        @Configurable.Comment({
+                "Whether the Blazing Cleanroom is enabled (Warning, having this off but blazingHatchEnabled on will cause you to crash)" })
+        public boolean blazingCleanroomEnabled = false;
         @Configurable
-        @Configurable.Comment({ "How powerful the Phoenix Computation Unit is (CWU/t)" })
-        public int PCUStrength = 16;
+        @Configurable.Comment({ "How powerful the normal Phoenix Computation Unit is (CWU/t)" })
+        public int BasicPCUStrength = 24;
         @Configurable
-        @Configurable.Comment({ "How powerful the Basic Phoenix Computation Unit is (CWU/t)" })
-        public int BasicPCUStrength = 8;
+        @Configurable.Comment({ "How powerful the Advanced Phoenix Computation Unit is (CWU/t)" })
+        public int PCUStrength = 48;
+        @Configurable
+        @Configurable.Comment({ "How powerful the Phoenix Heat Sink is (Cooling Provided)" })
+        public int BasicPCCUStrength = 12;
+        @Configurable
+        @Configurable.Comment({ "How powerful the Phoenix Active Cooler is (Cooling Provided)" })
+        public int PCCUStrength = 24;
+        @Configurable
+        @Configurable.Comment({
+                "How much coolant the basic Phoenix Computation Unit uses (Coolant per tick for the advanced version is doubled from this number)" })
+        public int BasicPCUCoolantUsed = 4;
+        @Configurable
+        @Configurable.Comment({
+                "How much coolant the Advanced Phoenix Computation Unit uses (Coolant per tick for the advanced version is doubled from this number)" })
+        public int PCUCoolantUsed = 4;
+        @Configurable
+        @Configurable.Comment({ "How powerful the normal Phoenix Computation Unit is (CWU/t) when damaged" })
+        public int damagedBasicPCUStrength = 4;
     }
 }

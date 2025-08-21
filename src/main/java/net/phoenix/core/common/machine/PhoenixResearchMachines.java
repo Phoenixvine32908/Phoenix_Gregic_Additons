@@ -1,5 +1,6 @@
 package net.phoenix.core.common.machine;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
@@ -15,7 +16,6 @@ import net.minecraft.network.chat.Component;
 import net.phoenix.core.common.machine.multiblock.part.hpca.PhoenixComputationPartMachine;
 import net.phoenix.core.common.machine.multiblock.part.hpca.PhoenixCoolerPartMachine;
 import net.phoenix.core.configs.PhoenixConfigs;
-import net.phoenix.core.phoenixcore;
 
 import java.util.function.Function;
 
@@ -68,19 +68,20 @@ public class PhoenixResearchMachines {
 
     // Standard version of your custom cooler
     public static final MachineDefinition PHOENIX_COOLER_COMPONENT = registerCoolingHPCAPart(
-            "phoenix_cooling_component", "Phoenix Cooling Component",
+            "phoenix_heat_sink_component", "Phoenix Heat Sink Component",
             // Use a lambda to correctly pass the 'advanced' boolean
             holder -> new PhoenixCoolerPartMachine(holder, false),
             "advanced_heat_sink", false) // Pass false for the advanced parameter
             .tooltips(Component.translatable("gtceu.machine.hpca.component_general.upkeep_eut", 0),
                     Component.translatable("gtceu.machine.hpca.component_type.cooler_passive"),
-                    Component.translatable("gtceu.machine.hpca.component_type.cooler_cooling", 4),
+                    Component.translatable("gtceu.machine.hpca.component_type.cooler_cooling",
+                            PhoenixConfigs.INSTANCE.features.BasicPCCUStrength),
                     Component.translatable("gtceu.part_sharing.disabled"))
             .register();
 
     // Advanced version of your custom cooler
-    public static final MachineDefinition ADVANCED_PHOENIX_COOLER_COMPONENT = registerCoolingHPCAPart(
-            "advanced_phoenix_cooling_component", "Advanced Phoenix Cooling Component",
+    public static final MachineDefinition ACTIVE_PHOENIX_COOLER_COMPONENT = registerCoolingHPCAPart(
+            "active_phoenix_cooling_component", "Active Phoenix Cooling Component",
             // Use a lambda to correctly pass the 'advanced' boolean
             holder -> new PhoenixCoolerPartMachine(holder, true),
             "advanced_active_cooler", true) // Pass true for the advanced parameter
@@ -89,7 +90,8 @@ public class PhoenixResearchMachines {
                     Component.translatable("gtceu.machine.hpca.component_type.cooler_active"),
                     Component.translatable("gtceu.machine.hpca.component_type.cooler_active_coolant",
                             12, GTMaterials.PCBCoolant.getLocalizedName()),
-                    Component.translatable("gtceu.machine.hpca.component_type.cooler_cooling", 8),
+                    Component.translatable("gtceu.machine.hpca.component_type.cooler_cooling",
+                            PhoenixConfigs.INSTANCE.features.PCCUStrength),
                     Component.translatable("gtceu.part_sharing.disabled"))
             .register();
 
@@ -104,8 +106,8 @@ public class PhoenixResearchMachines {
                 .modelProperty(GTMachineModelProperties.IS_HPCA_PART_DAMAGED, false)
                 .modelProperty(GTMachineModelProperties.IS_ACTIVE, false)
                 .model(createHPCAPartModel(isAdvanced,
-                        phoenixcore.id("block/overlay/machine/hpca/cooling/" + texture),
-                        phoenixcore.id("block/overlay/machine/hpca/damaged" + (isAdvanced ? "_advanced" : ""))));
+                        GTCEu.id("block/overlay/machine/hpca/cooling/" + texture),
+                        GTCEu.id("block/overlay/machine/hpca/damaged" + (isAdvanced ? "_advanced" : ""))));
     }
 
     private static MachineBuilder<MachineDefinition> registerComputationHPCAPart(String name, String displayName,
@@ -119,9 +121,8 @@ public class PhoenixResearchMachines {
                 .modelProperty(GTMachineModelProperties.IS_HPCA_PART_DAMAGED, false)
                 .modelProperty(GTMachineModelProperties.IS_ACTIVE, false)
                 .model(createHPCAPartModel(isAdvanced,
-                        phoenixcore.id("block/machine/part/hpca/computation/" + texture),
-                        phoenixcore
-                                .id("block/machine/part/hpca/computation/damaged" + (isAdvanced ? "_advanced" : ""))));
+                        GTCEu.id("block/machine/part/hpca/computation/" + texture),
+                        GTCEu.id("block/machine/part/hpca/computation/damaged" + (isAdvanced ? "_advanced" : ""))));
     }
 
     public static void init() {}

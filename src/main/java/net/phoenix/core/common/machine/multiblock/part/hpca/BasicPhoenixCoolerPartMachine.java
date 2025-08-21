@@ -22,7 +22,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class PhoenixCoolerPartMachine extends HPCAComponentPartMachine implements IHPCACoolantProvider {
+public class BasicPhoenixCoolerPartMachine extends HPCAComponentPartMachine implements IHPCACoolantProvider {
 
     // The 'advanced' property is handled by the HPCAComponentPartMachine base class.
     // We simply use the value from the superclass to determine behavior.
@@ -30,7 +30,7 @@ public class PhoenixCoolerPartMachine extends HPCAComponentPartMachine implement
     @Getter
     private final boolean advanced;
 
-    public PhoenixCoolerPartMachine(IMachineBlockEntity holder, boolean advanced) {
+    public BasicPhoenixCoolerPartMachine(IMachineBlockEntity holder, boolean advanced) {
         // We pass 'false' to the super constructor because we are defining a new,
         // single-tier part that isn't 'advanced' in the base sense.
         super(holder);

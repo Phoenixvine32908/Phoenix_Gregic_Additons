@@ -21,14 +21,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
  */
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class PhoenixComputationPartMachine extends HPCAComputationPartMachine implements IHPCAComputationProvider {
+public class BasicPhoenixComputationPartMachine extends HPCAComputationPartMachine implements IHPCAComputationProvider {
 
     // You can define new tiers for your part if you need, or simply use a single tier.
     // For this example, we'll make a single, very powerful part.
-    public PhoenixComputationPartMachine(IMachineBlockEntity holder) {
+    public BasicPhoenixComputationPartMachine(IMachineBlockEntity holder) {
         // We pass 'false' to the super constructor because we are defining a new,
         // single-tier part that isn't 'advanced' in the base sense.
-        super(holder, true);
+        super(holder, false);
     }
 
     /**
@@ -80,7 +80,7 @@ public class PhoenixComputationPartMachine extends HPCAComputationPartMachine im
     @Override
     public int getCWUPerTick() {
         if (isDamaged()) return PhoenixConfigs.INSTANCE.features.damagedBasicPCUStrength;
-        return PhoenixConfigs.INSTANCE.features.PCUStrength;
+        return PhoenixConfigs.INSTANCE.features.BasicPCUStrength;
     }
 
     /**
@@ -92,6 +92,6 @@ public class PhoenixComputationPartMachine extends HPCAComputationPartMachine im
      */
     @Override
     public int getCoolingPerTick() {
-        return PhoenixConfigs.INSTANCE.features.PCUCoolantUsed; // Double the base advanced part's cooling.
+        return PhoenixConfigs.INSTANCE.features.BasicPCUCoolantUsed; // Double the base advanced part's cooling.
     }
 }
