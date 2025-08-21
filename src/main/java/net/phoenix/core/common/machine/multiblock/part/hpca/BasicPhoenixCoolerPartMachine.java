@@ -49,7 +49,8 @@ public class BasicPhoenixCoolerPartMachine extends HPCAComponentPartMachine impl
 
     @Override
     public int getUpkeepEUt() {
-        return advanced ? GTValues.VA[GTValues.IV] : 0;
+        return advanced ? GTValues.VA[PhoenixConfigs.INSTANCE.features.ActiveCoolerEutUpkeep] :
+                GTValues.VA[PhoenixConfigs.INSTANCE.features.HeatSinkEutUpkeep];
     }
 
     @Override
@@ -59,8 +60,8 @@ public class BasicPhoenixCoolerPartMachine extends HPCAComponentPartMachine impl
 
     @Override
     public int getCoolingAmount() {
-        return advanced ? PhoenixConfigs.INSTANCE.features.PCCUStrength :
-                PhoenixConfigs.INSTANCE.features.BasicPCCUStrength;
+        return advanced ? PhoenixConfigs.INSTANCE.features.ActiveCoolerStrength :
+                PhoenixConfigs.INSTANCE.features.HeatSinkStrength;
     }
 
     @Override
@@ -70,6 +71,6 @@ public class BasicPhoenixCoolerPartMachine extends HPCAComponentPartMachine impl
 
     @Override
     public int getMaxCoolantPerTick() {
-        return advanced ? 12 : 0;
+        return advanced ? PhoenixConfigs.INSTANCE.features.ActiveCoolerCoolantUse : 0;
     }
 }

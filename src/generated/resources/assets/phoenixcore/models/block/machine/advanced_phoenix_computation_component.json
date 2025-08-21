@@ -35,7 +35,7 @@
         "parent": "phoenixcore:block/advanced_phoenix_computation_component_base",
         "textures": {
           "overlay": "gtceu:block/machine/part/hpca/computation/damaged_advanced",
-          "overlay_emissive": "gtceu:block/machine/part/hpca/computation/advanced_phoenix_computation_component_active_emissive"
+          "overlay_emissive": "gtceu:block/void"
         }
       }
     },

@@ -56,7 +56,7 @@ public class PhoenixComputationPartMachine extends HPCAComputationPartMachine im
      */
     @Override
     public int getUpkeepEUt() {
-        return GTValues.VA[GTValues.UV];
+        return GTValues.VA[PhoenixConfigs.INSTANCE.features.PCUEutUpkeep];
     }
 
     /**
@@ -67,7 +67,7 @@ public class PhoenixComputationPartMachine extends HPCAComputationPartMachine im
      */
     @Override
     public int getMaxEUt() {
-        return GTValues.VA[GTValues.MAX];
+        return GTValues.VA[PhoenixConfigs.INSTANCE.features.PCUMaxEUt];
     }
 
     /**
@@ -79,7 +79,7 @@ public class PhoenixComputationPartMachine extends HPCAComputationPartMachine im
      */
     @Override
     public int getCWUPerTick() {
-        if (isDamaged()) return PhoenixConfigs.INSTANCE.features.damagedBasicPCUStrength;
+        if (isDamaged()) return PhoenixConfigs.INSTANCE.features.damagedPCUStrength;
         return PhoenixConfigs.INSTANCE.features.PCUStrength;
     }
 

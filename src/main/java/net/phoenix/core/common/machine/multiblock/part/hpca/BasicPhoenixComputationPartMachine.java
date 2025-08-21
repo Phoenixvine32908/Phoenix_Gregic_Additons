@@ -56,7 +56,7 @@ public class BasicPhoenixComputationPartMachine extends HPCAComputationPartMachi
      */
     @Override
     public int getUpkeepEUt() {
-        return GTValues.VA[GTValues.UV];
+        return GTValues.VA[PhoenixConfigs.INSTANCE.features.basicPCUEutUpkeep];
     }
 
     /**
@@ -67,7 +67,7 @@ public class BasicPhoenixComputationPartMachine extends HPCAComputationPartMachi
      */
     @Override
     public int getMaxEUt() {
-        return GTValues.VA[GTValues.MAX];
+        return GTValues.VA[PhoenixConfigs.INSTANCE.features.basicPCUMaxEUt];
     }
 
     /**
