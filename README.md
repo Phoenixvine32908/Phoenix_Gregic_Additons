@@ -17,4 +17,4 @@ However for the code involving cleanroom and hpca componet parts, these are an e
 -Thans to Ravemaker, Ensign Evident, and Qwerty from the Sky of Grind/Phoenix Forge Technologies discord for advice
 -Thanks to Monifactory for some of the textures [MoniFactory Github](https://github.com/ThePansmith/Monifactory)
 -Thanks to the GregTech Modern team for use of code such as HPCAMachine and the HPCAComponet classes [GTM Github](https://github.com/GregTechCEu/GregTech-Modern)
-- [this](https://github.com/Frontiers-PackForge/CosmicCore/blob/main-1.20.1-forge/.github/workflows/spotless.yml) and [this](https://github.com/Frontiers-PackForge/CosmicCore/blob/main-1.20.1-forge/.github/actions/build_setup/action.yml) to your project
+
