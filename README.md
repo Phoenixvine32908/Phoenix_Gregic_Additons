@@ -1,38 +1,20 @@
-# GregTech Addon Template
-## Template for GregTech Modern addons on 1.20.1
+# CoreMod for the Phoenix Forge Technologies modpack
+# Seeks to add whacky and cool features to spicen up gameplay
 
- Original template by [screret](https://github.com/screret), maintained by [JuiceyBeans](https://github.com/JuiceyBeans)
+Contributions are welcome here and in Phoenix Forge Technologies[PFT Github][https://github.com/Phoenixvine32908/Phoenix-Forge-Technologies]
 
-<hr>
+Most assets and code are licensed under LPGL 3.0 as I use code/assets from other wonderful creators
 
-## How do I make an addon for GregTech Modern?
-Well for one, you WILL need to know Java to make an addon. There's no getting around this. A good starting point would be [MOOC](https://java-programming.mooc.fi/) or [W3Schools](https://www.w3schools.com/java/
-)
+However for the code involving cleanroom and hpca componet parts these are an exception as these are licensed under MIT
 
-Unfortunately, there isn't any official documentation so far for making GregTech Modern addons. There are a couple of mods you can look at to reference though!
-
-Repositories for other addons:
-
-- [GT Community Additions](https://github.com/mordgren/GTCA)
-- [Gregtech: Extended Chemistry Extended](https://github.com/jmoiron/Gregtech-Extended-Chemistry)
-- [GCYLM](https://github.com/eve336/gcylm)
-- [Gregicality Rocketry](https://github.com/Argent-Matter/gcyr/)
-
-Additionally, you may be able to find help on the [GregTech CEu Discord](https://discord.gg/bWSWuYvURP)!
-
-<hr>
-
-## This template comes packaged with [Spotless](https://github.com/diffplug/spotless)!
-
-### 1. What is Spotless?
-- Spotless keeps your code neatly formatted. It's essentially a grammar check for your code!
-### 2. Can I choose not to use Spotless?
-- Yes! Spotless is completely optional and will not affect your project by default
-### 3. How do I run Spotless?
-- You can run Spotless anytime by:
-  - Running the `spotlessApply` task from the Gradle tab in IntelliJ
-  - Installing the [Spotless Gradle plugin for IntelliJ](https://plugins.jetbrains.com/plugin/18321-spotless-gradle)
-  - Typing in `gradlew.bat :spotlessApply` if you're on Windows
-  - Typing in `bash gradlew :spotlessApply` if you're on Linux
-### 4. So how do I check if Spotless has been applied to my code?
-- Running `spotlessApply` will format all files for you automatically! If you want GitHub to check each commit for if Spotless has been run, you can add [this](https://github.com/Frontiers-PackForge/CosmicCore/blob/main-1.20.1-forge/.github/workflows/spotless.yml) and [this](https://github.com/Frontiers-PackForge/CosmicCore/blob/main-1.20.1-forge/.github/actions/build_setup/action.yml) to your project
+## Credit
+-Thanks to Ezlych of Sky Of Grind for providing the textures for the Phoenix HPCA Componets[Ezlych/RianGomita](https://github.com/RianGomita)
+-Thanks to Sky of Grind for some textures/ideas[Sky of Grind Github](https://github.com/RianGomita/Sky-Of-Grind)
+-Thanks to Ghostipedia for allowing me to use her UniqueWorkableElectricMultiblockMachine class[Ghosipedia](https://github.com/Ghostipedia)
+-Thanks to CosmicCore for some of the textures[Cosmic Core Github](https://github.com/Frontiers-PackForge/CosmicCore)
+-Thanks to NegaNote of Monifactory/Monilabs for allowing me to use her CreativeEnergyMultiblockMachine[NegaNote](https://github.com/NegaNote)[MoniLabs Github](https://github.com/NegaNote/MoniLabs/blob/main/README.md)
+-Thanks to NegaNote of Gtm Utils for code to learn from and use of the SterileCleaningMaintence Hatch texture [GTM Utils Github](https://github.com/NegaNote/GregTech-Modern-Utilities)
+-Thans to Ravemaker, Ensign Evident, and Qwerty from the Sky of Grind/Phoenix Forge Technologies discord for advice
+-Thanks to Monifactory for some of the textures [MoniFactory Github](https://github.com/ThePansmith/Monifactory)
+-Thanks to the GregTech Modern team for use of code such as HPCAMachine and the HPCAComponet classes [GTM Github](https://github.com/GregTechCEu/GregTech-Modern)
+- [this](https://github.com/Frontiers-PackForge/CosmicCore/blob/main-1.20.1-forge/.github/workflows/spotless.yml) and [this](https://github.com/Frontiers-PackForge/CosmicCore/blob/main-1.20.1-forge/.github/actions/build_setup/action.yml) to your project
