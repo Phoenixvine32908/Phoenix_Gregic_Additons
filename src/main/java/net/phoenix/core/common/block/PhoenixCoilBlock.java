@@ -56,7 +56,7 @@ public class PhoenixCoilBlock extends ActiveBlock {
 
     public enum CoilType implements StringRepresentable, ICoilType {
 
-        COIL_TRUE_HEAT_STABLE("true_heat_stable", 12000, 10, 12, 5, PhoenixMaterials.PHOENIX_ENRICHED_TRITANIUM,
+        COIL_TRUE_HEAT_STABLE("true_heat_stable", 1, 1, 1, 1, PhoenixMaterials.PHOENIX_ENRICHED_TRITANIUM,
                 phoenixcore.id("block/true_heat_stable_coil_block"));
 
         @NotNull

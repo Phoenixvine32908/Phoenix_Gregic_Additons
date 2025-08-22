@@ -37,7 +37,7 @@ public class PhoenixMaterials {
                 phoenixcore.id("phoenix_enriched_tritanium"))
                 .ingot()
                 .color(0xFF0000)
-                .secondaryColor(0x000000)
+                .secondaryColor(0x840707)
                 .formula("PET")
                 .iconSet(PhoenixMaterialSet.ALMOST_PURE_NEVONIAN_STEEL)
                 .buildAndRegister();

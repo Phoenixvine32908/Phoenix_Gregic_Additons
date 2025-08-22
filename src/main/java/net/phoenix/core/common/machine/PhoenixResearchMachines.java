@@ -106,9 +106,12 @@ public class PhoenixResearchMachines {
                         Component.translatable("gtceu.machine.hpca.component_type.cooler_active"),
                         Component.translatable("gtceu.machine.hpca.component_type.cooler_active_coolant",
                                 INSTANCE.features.ActiveCoolerCoolantUse,
-                                GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant).getLocalizedName(),
-                                "Uses " + INSTANCE.features.ActiveCoolerCoolant +
-                                        " if in the PHPCA and PCB Coolant if not"),
+                                // This is already correct
+                                GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant).getLocalizedName()),
+                        // This is the line you need to fix
+                        // First, get the localized name for the configured material
+                        Component.translatable("gtceu.tooltip.uses_custom_coolant",
+                                GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant).getLocalizedName()),
                         Component.translatable("gtceu.machine.hpca.component_type.cooler_cooling",
                                 INSTANCE.features.ActiveCoolerStrength),
                         Component.translatable("gtceu.part_sharing.disabled"))

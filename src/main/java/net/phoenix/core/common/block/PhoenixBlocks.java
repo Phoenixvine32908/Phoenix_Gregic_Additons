@@ -53,6 +53,18 @@ public class PhoenixBlocks {
     public static BlockEntry<Block> TRUE_PHOENIX_INFUSED_CASING = registerSimpleBlock(
             "§cTrue Phoenix Infused Casing", "true_phoenix_infused_casing",
             "true_phoenix_infused_casing", BlockItem::new);
+    public static BlockEntry<Block> AKASHIC_ZERONIUM_CASING = registerSimpleBlock(
+            "§5Akashic Zeronium Casing", "akashic_zeronium_casing",
+            "akashic_zeronium_casing", BlockItem::new);
+    public static BlockEntry<Block> PERFECTED_LOGIC = registerSimpleBlock(
+            "§5Perfected Logic Casing", "perfected_logic",
+            "perfected_logic", BlockItem::new);
+    public static BlockEntry<Block> PHOENIX_ENRICHED_NEUTRONIUM_CASING = registerSimpleBlock(
+            "§5Phoenix Enriched Neutronium Casing", "phoenix_enriched_neutronium_casing",
+            "phoenix_enriched_neutronium_casing", BlockItem::new);
+    public static BlockEntry<Block> AKASHIC_COIL_BLOCK = registerSimpleBlock(
+            "§5Computation Coil", "akashic_coil_block",
+            "akashic_coil_block", BlockItem::new);
     static {
         if (PhoenixConfigs.INSTANCE.features.blazingCleanroomEnabled) {
             final BlockEntry<Block> BLAZING_CLEANROOM_FILTER_CASING = createCleanroomFilter(
