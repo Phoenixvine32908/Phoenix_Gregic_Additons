@@ -5,7 +5,7 @@ Contributions are welcome here and in Phoenix Forge Technologies[PFT Github][htt
 
 Most assets and code are licensed under LPGL 3.0 as I use code/assets from other wonderful creators
 
-However for the code involving cleanroom and hpca componet parts these are an exception as these are licensed under MIT
+However for the code involving cleanroom and hpca componet parts, these are an exception as these are licensed under MIT
 
 ## Credit
 -Thanks to Ezlych of Sky Of Grind for providing the textures for the Phoenix HPCA Componets[Ezlych/RianGomita](https://github.com/RianGomita)
