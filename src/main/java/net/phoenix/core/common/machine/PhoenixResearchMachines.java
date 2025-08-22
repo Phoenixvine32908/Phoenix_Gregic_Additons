@@ -40,6 +40,7 @@ public class PhoenixResearchMachines {
     //////////////////////////////////////
     // *********** HPCA ***********//
     //////////////////////////////////////
+
     static {
         if (INSTANCE.features.HPCAComponetsEnabled)
             // Here we define your new custom HPCA part.
@@ -104,7 +105,10 @@ public class PhoenixResearchMachines {
                                 INSTANCE.features.ActiveCoolerEutUpkeep),
                         Component.translatable("gtceu.machine.hpca.component_type.cooler_active"),
                         Component.translatable("gtceu.machine.hpca.component_type.cooler_active_coolant",
-                                INSTANCE.features.ActiveCoolerCoolantUse, GTMaterials.PCBCoolant.getLocalizedName()),
+                                INSTANCE.features.ActiveCoolerCoolantUse,
+                                GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant).getLocalizedName(),
+                                "Uses " + INSTANCE.features.ActiveCoolerCoolant +
+                                        " if in the PHPCA and PCB Coolant if not"),
                         Component.translatable("gtceu.machine.hpca.component_type.cooler_cooling",
                                 INSTANCE.features.ActiveCoolerStrength),
                         Component.translatable("gtceu.part_sharing.disabled"))

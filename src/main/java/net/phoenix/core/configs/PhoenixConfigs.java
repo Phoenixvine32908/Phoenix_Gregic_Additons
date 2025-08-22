@@ -34,7 +34,7 @@ public class PhoenixConfigs {
         public boolean blazingHatchEnabled = true;
         @Configurable
         @Configurable.Comment({
-                "Whether the Blazing Cleanroom is enabled (This just disables the casings, you can have the hatch on with this off just fine fine)" })
+                "Whether the Blazing Cleanroom is enabled (This just disables the casings, you can have the hatch on with this off just fine)" })
         public boolean blazingCleanroomEnabled = false;
         @Configurable
         @Configurable.Comment({
@@ -51,11 +51,11 @@ public class PhoenixConfigs {
         public int PCUStrength = 48;
         @Configurable
         @Configurable.Comment({
-                "How much coolant the basic Phoenix Computation Unit uses (Coolant per tick for the advanced version is doubled from this number)" })
+                "How much coolant the basic Phoenix Computation Unit uses" })
         public int BasicPCUCoolantUsed = 16;
         @Configurable
         @Configurable.Comment({
-                "How much coolant the Advanced Phoenix Computation Unit uses (Coolant per tick for the advanced version is doubled from this number)" })
+                "How much coolant the Advanced Phoenix Computation Unit uses" })
         public int PCUCoolantUsed = 4;
         @Configurable
         @Configurable.Comment({ "How powerful the normal Phoenix Computation Unit is (CWU/t) when damaged" })
@@ -98,5 +98,8 @@ public class PhoenixConfigs {
         @Configurable
         @Configurable.Comment({ "How much coolant the Active Phoenix Cooler can use at max in milibuckets" })
         public int ActiveCoolerCoolantUse = 10;
+        @Configurable
+        @Configurable.Comment({ "What Coolant the Active Phoenix Cooler uses (Gt or GT Kubejs Material)" })
+        public String ActiveCoolerCoolant = "dance";
     }
 }
