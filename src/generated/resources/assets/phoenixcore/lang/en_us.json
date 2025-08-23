@@ -6,7 +6,7 @@
   "block.phoenixcore.blazing_cleaning_maintenance_hatch": "Blazing Cleaning Maintenance Hatch",
   "block.phoenixcore.blazing_filter_casing": "§cBlazing Filter Casing",
   "block.phoenixcore.dance": "dance",
-  "block.phoenixcore.high_yield_photon_emission_regulator": "High-Yield Photon Emission Regulator (HPCA)",
+  "block.phoenixcore.high_yield_photon_emission_regulator": "§dHigh-Yield Photon Emission Regulator (HPCA)",
   "block.phoenixcore.perfected_logic": "§5Perfected Logic Casing",
   "block.phoenixcore.phoenix_computation_component": "Phoenix Computation Component",
   "block.phoenixcore.phoenix_enriched_neutronium_casing": "§5Phoenix Enriched Neutronium Casing",
@@ -17,5 +17,13 @@
   "block.phoenixcore.true_heat_stable_coil_block": "True Heat Stable Coil Block",
   "block.phoenixcore.true_phoenix_infused_casing": "§cTrue Phoenix Infused Casing",
   "block.phoenixcore.twisted_computer_casing": "§5Twisted Computer Casing",
-  "item.phoenixcore.basic_fuel_rod": "Basic Fuel Rod"
+  "item.phoenixcore.basic_fuel_rod": "Basic Fuel Rod",
+  "material.phoenixcore.phoenix_enriched_tritanium": "§cPhoenix Enriched Tritanium",
+  "material.phoenixcore.extremely_modified_space_grade_steel": "§cExtremely Modified Space Grade Steel",
+  "material.phoenixcore.eighty_five_percent_pure_nevvonian_steel": "§6Eighty Five Percent Pure Nevvonian Steel",
+  "phoenixcore.tooltip.hyper_machine_purpose": "An upgraded HPCA that uses %s, %s, or %s to provide cooling",
+  "phoenixcore.tooltip.hyper_machine_1": "Each Coolant provides a boost:",
+  "phoenixcore.tooltip.hyper_machine_coolant_base": "%s provides a %sx boost",
+  "phoenixcore.tooltip.hyper_machine_coolant2": "%s provides a %sx boost",
+  "phoenixcore.tooltip.hyper_machine_coolant3": "%s provides a %sx boost"
 }

@@ -35,6 +35,7 @@ import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
 import static net.phoenix.core.common.registry.PhoenixRegistration.REGISTRATE;
+import static net.phoenix.core.configs.PhoenixConfigs.INSTANCE;
 
 @SuppressWarnings("unused")
 public class PhoenixMachines {
@@ -167,7 +168,26 @@ public class PhoenixMachines {
             // 2. Mova toda a lógica de registro para dentro do método init()
             HIGH_YEILD_PHOTON_EMISSION_REGULATER = REGISTRATE
                     .multiblock("high_yield_photon_emission_regulator", PhoenixHPCAMachine::new)
-                    .langValue("High-Yield Photon Emission Regulator (HPCA)")
+                    .langValue("§dHigh-Yield Photon Emission Regulator (HPCA)")
+                    .tooltips(Component.translatable("phoenixcore.tooltip.hyper_machine_purpose",
+                            GTMaterials.get(INSTANCE.features.ActiveCoolerCoolantBase).getLocalizedName(),
+                            GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant1).getLocalizedName(),
+                            GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant2).getLocalizedName()),
+                            Component.translatable("phoenixcore.tooltip.hyper_machine_1"),
+                            Component
+                                    .translatable("phoenixcore.tooltip.hyper_machine_coolant_base",
+                                            GTMaterials.get(INSTANCE.features.ActiveCoolerCoolantBase)
+                                                    .getLocalizedName(),
+                                            INSTANCE.features.BaseCoolantBoost)
+                                    .withStyle(ChatFormatting.DARK_RED),
+                            Component.translatable("phoenixcore.tooltip.hyper_machine_coolant2",
+                                    GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant1).getLocalizedName(),
+                                    INSTANCE.features.CoolantBoost1).withStyle(ChatFormatting.DARK_BLUE),
+                            Component
+                                    .translatable("phoenixcore.tooltip.hyper_machine_coolant3",
+                                            GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant2).getLocalizedName(),
+                                            INSTANCE.features.CoolantBoost2)
+                                    .withStyle(ChatFormatting.GOLD))
                     .rotationState(RotationState.NON_Y_AXIS)
                     .appearanceBlock(ADVANCED_COMPUTER_CASING)
                     .recipeType(GTRecipeTypes.DUMMY_RECIPES)
@@ -205,6 +225,7 @@ public class PhoenixMachines {
                             .where('G', blocks(PhoenixResearchMachines.ADVANCED_PHOENIX_COMPUTATION_COMPONENT.get())
                                     .or(blocks(PhoenixResearchMachines.ADVANCED_PHOENIX_COMPUTATION_COMPONENT.get()))
                                     .or(blocks(GTResearchMachines.HPCA_ADVANCED_COMPUTATION_COMPONENT.get()))
+                                    .or(blocks(GTResearchMachines.HPCA_EMPTY_COMPONENT.get()))
                                     .or(blocks(GTResearchMachines.HPCA_COMPUTATION_COMPONENT.get())))
                             .where('H', blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
                             .where('I', blocks(COMPUTER_CASING.get()))
@@ -212,6 +233,7 @@ public class PhoenixMachines {
                             .where('K', blocks(PhoenixBlocks.AKASHIC_COIL_BLOCK.get()))
                             .where('L', blocks(PhoenixResearchMachines.ACTIVE_PHOENIX_COOLER_COMPONENT.get())
                                     .or(blocks(PhoenixResearchMachines.PHOENIX_COOLER_COMPONENT.get()))
+                                    .or(blocks(GTResearchMachines.HPCA_EMPTY_COMPONENT.get()))
                                     .or(blocks(GTResearchMachines.HPCA_ACTIVE_COOLER_COMPONENT.get()))
                                     .or(blocks(GTResearchMachines.HPCA_HEAT_SINK_COMPONENT.get())))
                             .where('M', blocks(PhoenixBlocks.PERFECTED_LOGIC.get()))
