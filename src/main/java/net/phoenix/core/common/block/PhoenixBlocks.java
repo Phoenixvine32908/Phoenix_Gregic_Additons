@@ -65,14 +65,20 @@ public class PhoenixBlocks {
     public static BlockEntry<Block> AKASHIC_COIL_BLOCK = registerSimpleBlock(
             "§5Computation Coil", "akashic_coil_block",
             "akashic_coil_block", BlockItem::new);
+    public static BlockEntry<Block> SPACE_TIME_COOLED_ETERNITY_CASING = registerSimpleBlock(
+            "§5Space Time Cooled Eternity Casing", "space_time_cooled_eternity_casing",
+            "space_time_cooled_eternity_casing", BlockItem::new);
+    public static BlockEntry<Block> TWISTED_COMPUTER_CASING = registerSimpleBlock(
+            "§5Twisted Computer Casing", "twisted_computer_casing",
+            "twisted_computer_casing", BlockItem::new);
     static {
         if (PhoenixConfigs.INSTANCE.features.blazingCleanroomEnabled) {
-            final BlockEntry<Block> BLAZING_CLEANROOM_FILTER_CASING = createCleanroomFilter(
+            final BlockEntry<Block> BLAZING_CLEANROOM_FILTER_CASING = createCleanroomFilters(
                     BlazingFilterType.FILTER_CASING_BLAZING);
         }
     }
 
-    private static BlockEntry<Block> createCleanroomFilter(IFilterType filterType) {
+    private static BlockEntry<Block> createCleanroomFilters(IFilterType filterType) {
         var filterBlock = REGISTRATE.block(filterType.getSerializedName(), Block::new)
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(properties -> properties.strength(2.0f, 8.0f).sound(SoundType.METAL)

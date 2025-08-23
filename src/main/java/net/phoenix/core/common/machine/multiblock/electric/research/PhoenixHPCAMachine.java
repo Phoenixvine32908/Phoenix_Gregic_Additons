@@ -65,6 +65,8 @@ import java.util.function.Supplier;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
+import static net.phoenix.core.configs.PhoenixConfigs.INSTANCE;
+
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class PhoenixHPCAMachine extends WorkableElectricMultiblockMachine
@@ -473,39 +475,34 @@ public class PhoenixHPCAMachine extends WorkableElectricMultiblockMachine
             }
 
             double temperatureChange = temperatureIncrease - maxPassiveCooling;
-            // quick exit if no active cooling/coolant drain is present
             if (maxActiveCooling == 0 && maxCoolantDrain == 0) {
                 return temperatureChange;
             }
             if (forceCoolWithActive || maxActiveCooling <= temperatureChange) {
-                // try to fully utilize active coolers
-                FluidStack coolantStack = GTTransferUtils.drainFluidAccountNotifiableList(coolantTank,
-                        getCoolantStack(maxCoolantDrain), IFluidHandler.FluidAction.EXECUTE);
+                FluidStack coolantStack = GTTransferUtils.drainFluidAccountNotifiableList(
+                        coolantTank,
+                        getCoolantStack(maxCoolantDrain, coolantTank),
+                        IFluidHandler.FluidAction.EXECUTE);
                 if (!coolantStack.isEmpty()) {
                     long coolantDrained = coolantStack.getAmount();
                     if (coolantDrained == maxCoolantDrain) {
-                        // coolant requirement was fully met
                         temperatureChange -= maxActiveCooling;
                     } else {
-                        // coolant requirement was only partially met, cool proportional to fluid amount drained
-                        // a * (b / c)
                         temperatureChange -= maxActiveCooling * (1.0 * coolantDrained / maxCoolantDrain);
                     }
                 }
             } else if (temperatureChange > 0) {
-                // try to partially utilize active coolers to stabilize to zero
                 double temperatureToDecrease = Math.min(temperatureChange, maxActiveCooling);
                 int coolantToDrain = Math.max(1, (int) (maxCoolantDrain * (temperatureToDecrease / maxActiveCooling)));
-                FluidStack coolantStack = GTTransferUtils.drainFluidAccountNotifiableList(coolantTank,
-                        getCoolantStack(coolantToDrain), IFluidHandler.FluidAction.EXECUTE);
+                FluidStack coolantStack = GTTransferUtils.drainFluidAccountNotifiableList(
+                        coolantTank,
+                        getCoolantStack(coolantToDrain, coolantTank),
+                        IFluidHandler.FluidAction.EXECUTE);
                 if (!coolantStack.isEmpty()) {
                     int coolantDrained = coolantStack.getAmount();
                     if (coolantDrained == coolantToDrain) {
-                        // successfully stabilized to zero
                         return 0;
                     } else {
-                        // coolant requirement was only partially met, cool proportional to fluid amount drained
-                        // a * (b / c)
                         temperatureChange -= temperatureToDecrease * (1.0 * coolantDrained / coolantToDrain);
                     }
                 }
@@ -517,12 +514,41 @@ public class PhoenixHPCAMachine extends WorkableElectricMultiblockMachine
          * Get the coolant stack for this HPCA. Eventually this could be made more diverse with different
          * coolants from different Active Cooler components, but currently it is just a fixed Fluid.
          */
-        public FluidStack getCoolantStack(int amount) {
-            return new FluidStack(getCoolant(), amount);
+
+        private int getStrongestAvailableCoolantSlot(IFluidHandler tank) {
+            Fluid[] fluids = new Fluid[] {
+                    GTMaterials.get(PhoenixConfigs.INSTANCE.features.ActiveCoolerCoolant2).getFluid(), // slot 2
+                    // strongest
+                    GTMaterials.get(PhoenixConfigs.INSTANCE.features.ActiveCoolerCoolant1).getFluid(), // slot 1
+                    GTMaterials.get(PhoenixConfigs.INSTANCE.features.ActiveCoolerCoolantBase).getFluid() // slot 0
+                    // weakest
+            };
+            for (int slot = 0; slot < fluids.length; slot++) {
+                int tanks = tank.getTanks();
+                for (int i = 0; i < tanks; i++) {
+                    FluidStack stack = tank.getFluidInTank(i);
+                    if (!stack.isEmpty() && stack.getFluid() == fluids[slot]) {
+                        return 2 - slot; // slot 2 is index 0, so invert
+                    }
+                }
+            }
+            return 0; // fallback to base coolant
         }
 
-        private Fluid getCoolant() {
-            return GTMaterials.get(PhoenixConfigs.INSTANCE.features.ActiveCoolerCoolant).getFluid();
+        public FluidStack getCoolantStack(int amount, IFluidHandler tank) {
+            int slot = getStrongestAvailableCoolantSlot(tank);
+            return new FluidStack(getCoolant(slot), amount);
+        }
+
+        private Fluid getCoolant(int slot) {
+            switch (slot) {
+                case 1:
+                    return GTMaterials.get(PhoenixConfigs.INSTANCE.features.ActiveCoolerCoolant1).getFluid();
+                case 2:
+                    return GTMaterials.get(PhoenixConfigs.INSTANCE.features.ActiveCoolerCoolant2).getFluid();
+                default: // slot 0 = baseline pcb_coolant
+                    return GTMaterials.get(PhoenixConfigs.INSTANCE.features.ActiveCoolerCoolantBase).getFluid();
+            }
         }
 
         /**
@@ -557,13 +583,32 @@ public class PhoenixHPCAMachine extends WorkableElectricMultiblockMachine
             return toAllocate;
         }
 
+        private double getCoolantCWUMultiplier(IFluidHandler tank) {
+            try {
+                int slot = getStrongestAvailableCoolantSlot(tank);
+                switch (slot) {
+                    case 2:
+                        return PhoenixConfigs.INSTANCE.features.CoolantBoost2; // ActiveCoolerCoolant2
+                    case 1:
+                        return PhoenixConfigs.INSTANCE.features.CoolantBoost1; // ActiveCoolerCoolant1
+                    default:
+                        return PhoenixConfigs.INSTANCE.features.BaseCoolantBoost; // Base
+                }
+            } catch (Throwable t) {
+                return 1.0D;
+            }
+        }
+
         /** The maximum amount of CWUs (Compute Work Units) created per tick. */
         public int getMaxCWUt() {
             int maxCWUt = 0;
             for (var computationProvider : computationProviders) {
                 maxCWUt += computationProvider.getCWUPerTick();
             }
-            return maxCWUt;
+            if (controller != null && controller.coolantHandler != null) {
+                return (int) Math.max(0, Math.round(maxCWUt * getCoolantCWUMultiplier(controller.coolantHandler)));
+            }
+            return (int) Math.max(0, Math.round(maxCWUt));
         }
 
         /** The current EU/t this HPCA should use, considering passive drain, current computation, etc.. */
@@ -660,7 +705,11 @@ public class PhoenixHPCAMachine extends WorkableElectricMultiblockMachine
             if (getMaxCoolantDemand() > 0) {
                 data = Component.translatable("gtceu.universal.liters", getMaxCoolantDemand())
                         .withStyle(ChatFormatting.YELLOW).append(" ");
-                Component coolantName = Component.translatable("gtceu.multiblock.hpca.info_coolant_name")
+                Component coolantName = Component
+                        .translatable("gtceu.tooltip.custom_coolant",
+                                GTMaterials.get(INSTANCE.features.ActiveCoolerCoolantBase).getLocalizedName(),
+                                GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant1).getLocalizedName(),
+                                GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant2).getLocalizedName())
                         .withStyle(ChatFormatting.YELLOW);
                 data.append(coolantName);
             } else {

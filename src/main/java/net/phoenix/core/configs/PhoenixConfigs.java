@@ -31,7 +31,7 @@ public class PhoenixConfigs {
         public boolean creativeEnergyEnabled = true;
         @Configurable
         @Configurable.Comment({ "Whether the Blazing Maintence Hatch is enabled" })
-        public boolean blazingHatchEnabled = true;
+        public boolean blazingHatchEnabled = false;
         @Configurable
         @Configurable.Comment({
                 "Whether the Blazing Cleanroom is enabled (This just disables the casings, you can have the hatch on with this off just fine)" })
@@ -60,7 +60,7 @@ public class PhoenixConfigs {
         @Configurable
         @Configurable.Comment({
                 "How much coolant the Advanced Phoenix Computation Unit uses" })
-        public int PCUCoolantUsed = 16;
+        public int PCUCoolantUsed = 8;
         @Configurable
         @Configurable.Comment({ "How powerful the normal Phoenix Computation Unit is (CWU/t) when damaged" })
         public int damagedBasicPCUStrength = 16;
@@ -97,14 +97,34 @@ public class PhoenixConfigs {
         public int HeatSinkEutUpkeep = 0;
         @Configurable
         @Configurable.Comment({
-                "How much EU the Active Phoenix Cooler uses per tick (Goes off actual value so 524288 is 1 UV amp)" })
-        public int ActiveCoolerEutUpkeep = 524288;
+                "How much EU the Active Phoenix Cooler uses per tick (Goes off GTValues, ULV is 0, LV is 1, MV is 2, etc)" })
+        public int ActiveCoolerEutUpkeep = 8;
         @Configurable
         @Configurable.Comment({ "How much coolant the Active Phoenix Cooler can use at max in milibuckets" })
         public int ActiveCoolerCoolantUse = 10;
         @Configurable
         @Configurable.Comment({
-                "What Coolant the Active Phoenix Cooler uses when in the PHPCA (Gt or GT Kubejs Material)" })
-        public String ActiveCoolerCoolant = "pcb_coolant";
+                "What Base Coolant the Active Phoenix Cooler uses while in the PHPCA (Gt or GT Kubejs Material)" })
+        public String ActiveCoolerCoolantBase = "copper";
+        @Configurable
+        @Configurable.Comment({
+                "What Stronger Coolant the Active Phoenix Cooler uses while in the PHPCA  (Gt or GT Kubejs Material)" })
+        public String ActiveCoolerCoolant1 = "pcb_coolant";
+        @Configurable
+        @Configurable.Comment({
+                "What Strongest Coolant the Active Phoenix Cooler uses when in the PHPCA (Gt or GT Kubejs Material)" })
+        public String ActiveCoolerCoolant2 = "sodium_potassium";
+        @Configurable
+        @Configurable.Comment({
+                "How much ActiveCoolerCoolant1 boosts base CWU/t ()" })
+        public double BaseCoolantBoost = 1.0;
+        @Configurable
+        @Configurable.Comment({
+                "How much ActiveCoolerCoolant1 boosts base CWU/t ()" })
+        public double CoolantBoost1 = 1.1;
+        @Configurable
+        @Configurable.Comment({
+                "What Strongest Coolant the Active Phoenix Cooler uses when in the PHPCA (Gt or GT Kubejs Material)" })
+        public double CoolantBoost2 = 1.2;
     }
 }
