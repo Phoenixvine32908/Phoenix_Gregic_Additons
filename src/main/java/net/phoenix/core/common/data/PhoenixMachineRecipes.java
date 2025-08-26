@@ -39,6 +39,11 @@ public class PhoenixMachineRecipes {
                     .stationResearch(b -> b
                             .researchStack(GTMultiMachines.ACTIVE_TRANSFORMER.asStack()).CWUt(16))
                     .save(provider);
+            PhoenixRecipeTypes.PLEASE.recipeBuilder("please")
+                    .inputFluids(GTMaterials.SolderingAlloy.getFluid(GTValues.L * 32))
+                    .duration(1200)
+                    .inputFluids(Acetone.getFluid(GTValues.L * 32))
+                    .save(provider);
         }
     }
 }

@@ -50,6 +50,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.phoenix.core.api.gui.PhoenixGuiTextures;
 import net.phoenix.core.configs.PhoenixConfigs;
 
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
@@ -248,7 +249,7 @@ public class PhoenixHPCAMachine extends WorkableElectricMultiblockMachine
         // Create the hover grid
         builder.addWidget(new ExtendedProgressWidget(
                 () -> hpcaHandler.getAllocatedCWUt() > 0 ? progressSupplier.getAsDouble() : 0,
-                74, 57, 47, 47, GuiTextures.HPCA_COMPONENT_OUTLINE)
+                74, 65, 47, 47, PhoenixGuiTextures.PHOENIX_HPCA_COMPONENT_OUTLINE)
                 .setServerTooltipSupplier(hpcaHandler::addInfo)
                 .setFillDirection(ProgressTexture.FillDirection.LEFT_TO_RIGHT));
         int startX = 76;

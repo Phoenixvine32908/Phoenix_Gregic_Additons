@@ -31,7 +31,7 @@ public class PhoenixConfigs {
         public boolean creativeEnergyEnabled = true;
         @Configurable
         @Configurable.Comment({ "Whether the Blazing Maintence Hatch is enabled" })
-        public boolean blazingHatchEnabled = false;
+        public boolean blazingHatchEnabled = true;
         @Configurable
         @Configurable.Comment({
                 "Whether the Blazing Cleanroom is enabled (This just disables the casings, you can have the hatch on with this off just fine)" })

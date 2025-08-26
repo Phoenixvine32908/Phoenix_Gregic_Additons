@@ -96,7 +96,6 @@ public class PhoenixMachines {
                     .recipeType(PhoenixRecipeTypes.PLEASE) // Agora isso não será mais nulo
                     .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
                             GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("AAAAAABBBAABBBAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
                                     "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
@@ -154,7 +153,8 @@ public class PhoenixMachines {
                                             .setMaxGlobalLimited(2))
                             .where('D', controller(blocks(definition.getBlock())))
                             .where("B", blocks(BRONZE_HULL.get()).setMinGlobalLimited(575)
-                                    .or(autoAbilities(definition.getRecipeTypes()))
+                                    .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setPreviewCount(1))
+                                    .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setPreviewCount(1))
                                     .or(autoAbilities(true, false, true)))
                             .build())
                     .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_palladium_substation"),
@@ -182,7 +182,7 @@ public class PhoenixMachines {
                                     .withStyle(ChatFormatting.DARK_RED),
                             Component.translatable("phoenixcore.tooltip.hyper_machine_coolant2",
                                     GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant1).getLocalizedName(),
-                                    INSTANCE.features.CoolantBoost1).withStyle(ChatFormatting.DARK_BLUE),
+                                    INSTANCE.features.CoolantBoost1).withStyle(ChatFormatting.DARK_AQUA),
                             Component
                                     .translatable("phoenixcore.tooltip.hyper_machine_coolant3",
                                             GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant2).getLocalizedName(),
@@ -234,6 +234,7 @@ public class PhoenixMachines {
                             .where('L', blocks(PhoenixResearchMachines.ACTIVE_PHOENIX_COOLER_COMPONENT.get())
                                     .or(blocks(PhoenixResearchMachines.PHOENIX_COOLER_COMPONENT.get()))
                                     .or(blocks(GTResearchMachines.HPCA_EMPTY_COMPONENT.get()))
+                                    .or(blocks(GTResearchMachines.HPCA_BRIDGE_COMPONENT.get()))
                                     .or(blocks(GTResearchMachines.HPCA_ACTIVE_COOLER_COMPONENT.get()))
                                     .or(blocks(GTResearchMachines.HPCA_HEAT_SINK_COMPONENT.get())))
                             .where('M', blocks(PhoenixBlocks.PERFECTED_LOGIC.get()))
