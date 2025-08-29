@@ -19,6 +19,7 @@ import com.gregtechceu.gtceu.data.lang.LangHandler;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.level.block.Block;
 import net.phoenix.core.common.block.PhoenixBlocks;
 import net.phoenix.core.common.data.PhoenixRecipeTypes;
@@ -162,32 +163,44 @@ public class PhoenixMachines {
                     .register();
         }
     }
+    Component myColoredText = Component.translatable("block.phoenixcore.high_yield_photon_emission_regulator")
+            .withStyle(style -> style.withColor(TextColor.fromRgb(0xFF00FF)));
 
     static {
         if (PhoenixConfigs.INSTANCE.features.PHPCAEnabled) {
             // 2. Mova toda a lógica de registro para dentro do método init()
             HIGH_YEILD_PHOTON_EMISSION_REGULATER = REGISTRATE
                     .multiblock("high_yield_photon_emission_regulator", PhoenixHPCAMachine::new)
-                    .langValue("§dHigh-Yield Photon Emission Regulator (HPCA)")
+                    .langValue("block.phoenixcore.high_yield_photon_emission_regulator")
                     .tooltips(Component.translatable("phoenixcore.tooltip.hyper_machine_purpose",
-                            GTMaterials.get(INSTANCE.features.ActiveCoolerCoolantBase).getLocalizedName(),
-                            GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant1).getLocalizedName(),
-                            GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant2).getLocalizedName()),
+                            GTMaterials.get(INSTANCE.features.ActiveCoolerCoolantBase).getLocalizedName()
+                                    .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
+                                            .get(INSTANCE.features.ActiveCoolerCoolantBase).getMaterialARGB()))),
+                            GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant1).getLocalizedName()
+                                    .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
+                                            .get(INSTANCE.features.ActiveCoolerCoolant1).getMaterialARGB()))),
+                            GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant2).getLocalizedName()
+                                    .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
+                                            .get(INSTANCE.features.ActiveCoolerCoolant2).getMaterialARGB())))),
                             Component.translatable("phoenixcore.tooltip.hyper_machine_1"),
                             Component
                                     .translatable("phoenixcore.tooltip.hyper_machine_coolant_base",
                                             GTMaterials.get(INSTANCE.features.ActiveCoolerCoolantBase)
                                                     .getLocalizedName(),
                                             INSTANCE.features.BaseCoolantBoost)
-                                    .withStyle(ChatFormatting.DARK_RED),
+                                    .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
+                                            .get(INSTANCE.features.ActiveCoolerCoolantBase).getMaterialARGB()))),
                             Component.translatable("phoenixcore.tooltip.hyper_machine_coolant2",
                                     GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant1).getLocalizedName(),
-                                    INSTANCE.features.CoolantBoost1).withStyle(ChatFormatting.DARK_AQUA),
+                                    INSTANCE.features.CoolantBoost1)
+                                    .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
+                                            .get(INSTANCE.features.ActiveCoolerCoolant1).getMaterialARGB()))),
                             Component
                                     .translatable("phoenixcore.tooltip.hyper_machine_coolant3",
                                             GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant2).getLocalizedName(),
                                             INSTANCE.features.CoolantBoost2)
-                                    .withStyle(ChatFormatting.GOLD))
+                                    .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
+                                            .get(INSTANCE.features.ActiveCoolerCoolant2).getMaterialARGB()))))
                     .rotationState(RotationState.NON_Y_AXIS)
                     .appearanceBlock(ADVANCED_COMPUTER_CASING)
                     .recipeType(GTRecipeTypes.DUMMY_RECIPES)

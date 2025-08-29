@@ -23,7 +23,7 @@
   "material.phoenixcore.eighty_five_percent_pure_nevvonian_steel": "§6Eighty Five Percent Pure Nevvonian Steel",
   "phoenixcore.tooltip.hyper_machine_purpose": "An upgraded HPCA that uses %s, %s, or %s to provide cooling",
   "phoenixcore.tooltip.hyper_machine_1": "Each Coolant provides a boost:",
-  "phoenixcore.tooltip.hyper_machine_coolant_base": "%s provides a %sx boost",
-  "phoenixcore.tooltip.hyper_machine_coolant2": "%s provides a %sx boost",
-  "phoenixcore.tooltip.hyper_machine_coolant3": "%s provides a %sx boost"
+  "phoenixcore.tooltip.hyper_machine_coolant_base": "%s: %sx CWU/t",
+  "phoenixcore.tooltip.hyper_machine_coolant2": "%s: %sx CWU/t",
+  "phoenixcore.tooltip.hyper_machine_coolant3": "%s: %sx CWU/t"
 }

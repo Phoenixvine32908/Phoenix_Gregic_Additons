@@ -28,7 +28,7 @@ public class PhoenixConfigs {
         // Features
         @Configurable
         @Configurable.Comment({ "Whether the Creative Energy Multiblock is enabled" })
-        public boolean creativeEnergyEnabled = true;
+        public boolean creativeEnergyEnabled = false;
         @Configurable
         @Configurable.Comment({ "Whether the Blazing Maintence Hatch is enabled" })
         public boolean blazingHatchEnabled = true;

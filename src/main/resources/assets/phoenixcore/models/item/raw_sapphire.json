@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "phoenixcore:item/raw_sapphire"
-  }
-}

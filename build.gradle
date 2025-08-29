@@ -4,6 +4,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
     id 'org.parchmentmc.librarian.forgegradle' version '1.+'
     id 'com.diffplug.spotless' version '7.0.2'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 def generatedResources = file("src/generated")
@@ -113,11 +114,16 @@ minecraft {
     }
 }
 
-
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, 'mixins.monilabs.refmap.json'
+    config 'phoenixcore.mixins.json'
+}
 apply from: "$rootDir/gradle/scripts/spotless.gradle"
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     // JEI, EMI, Jade
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
