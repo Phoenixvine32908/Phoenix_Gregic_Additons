@@ -21,6 +21,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.level.block.Block;
+import net.phoenix.core.client.renderer.machine.multiblock.CosmicDynamicRenderHelpers;
 import net.phoenix.core.common.block.PhoenixBlocks;
 import net.phoenix.core.common.data.PhoenixRecipeTypes;
 import net.phoenix.core.common.machine.multiblock.BlazingCleanroom;
@@ -35,6 +36,7 @@ import java.util.function.BiFunction;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
+import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static net.phoenix.core.common.registry.PhoenixRegistration.REGISTRATE;
 import static net.phoenix.core.configs.PhoenixConfigs.INSTANCE;
 
@@ -158,8 +160,13 @@ public class PhoenixMachines {
                                     .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setPreviewCount(1))
                                     .or(autoAbilities(true, false, true)))
                             .build())
-                    .workableCasingModel(GTCEu.id("block/casings/solid/machine_casing_palladium_substation"),
-                            GTCEu.id("block/multiblock/data_bank"))
+                    .model(
+                            createWorkableCasingMachineModel(
+                                    phoenixcore.id("block/akashic_coil_block"),
+                                    GTCEu.id("block/multiblock/generator/large_gas_turbine"))
+                                    .andThen(d -> d
+                                            .addDynamicRenderer(CosmicDynamicRenderHelpers::getArtificialStarRender)))
+                    .hasBER(true)
                     .register();
         }
     }
