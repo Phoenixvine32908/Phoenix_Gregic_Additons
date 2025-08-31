@@ -3,6 +3,8 @@ package net.phoenix.core.common.machine;
 import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.RotationState;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
+import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
 import com.gregtechceu.gtceu.api.machine.MetaMachine;
@@ -248,7 +250,7 @@ public class PhoenixMachines {
                                     .or(blocks(GTResearchMachines.HPCA_EMPTY_COMPONENT.get()))
                                     .or(blocks(GTResearchMachines.HPCA_COMPUTATION_COMPONENT.get())))
                             .where('H', blocks(GCYMBlocks.CASING_HIGH_TEMPERATURE_SMELTING.get()))
-                            .where('I', blocks(COMPUTER_CASING.get()))
+                            .where('F', blocks(ChemicalHelper.getBlock(TagPrefix.block, GTMaterials.Steel)))
                             .where('J', blocks(FUSION_GLASS.get()))
                             .where('K', blocks(PhoenixBlocks.AKASHIC_COIL_BLOCK.get()))
                             .where('L', blocks(PhoenixResearchMachines.ACTIVE_PHOENIX_COOLER_COMPONENT.get())
@@ -264,7 +266,7 @@ public class PhoenixMachines {
                     /*
                      * .shapeInfos(definition -> {
                      * List<MultiblockShapeInfo> shapeInfo = new ArrayList<>();
-                     * MultiblockShapeInfo.ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
+                     * .ShapeInfoBuilder builder = MultiblockShapeInfo.builder()
                      * .aisle("SA", "CC", "CC", "OC", "AA")
                      * .aisle("VA", "8V", "5V", "2V", "VA")
                      * .aisle("VA", "7V", "4V", "1V", "VA")

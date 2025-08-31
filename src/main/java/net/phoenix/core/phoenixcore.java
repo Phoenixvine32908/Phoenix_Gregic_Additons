@@ -9,6 +9,8 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
 
+import com.lowdragmc.lowdraglib.Platform;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -21,6 +23,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.phoenix.core.client.PhoenixClient;
 import net.phoenix.core.common.block.PhoenixBlocks;
 import net.phoenix.core.common.data.PhoenixItems;
 import net.phoenix.core.common.data.PhoenixRecipeTypes;
@@ -56,14 +59,14 @@ public class phoenixcore {
         modEventBus.addListener(this::addMaterials);
         modEventBus.addListener(this::modifyMaterials);
 
-        // This is the correct way to listen for and register GregTech-specific things,
-        // as shown in the GTCA example.
         modEventBus.addGenericListener(GTRecipeType.class, this::registerRecipeTypes);
         modEventBus.addGenericListener(SoundEntry.class, this::registerSounds);
         modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
 
         modEventBus.addListener(this::addCreative);
-
+        if (Platform.isClient()) {
+            PhoenixClient.init(modEventBus);
+        }
         // Most other events are fired on Forge's bus.
         MinecraftForge.EVENT_BUS.register(this);
     }
