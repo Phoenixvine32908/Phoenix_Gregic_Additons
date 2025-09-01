@@ -2,7 +2,7 @@
 # www.blender.org
 
 newmtl layer
-map_Kd #texture0
+map_Kd blue_star_layer.png
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Ks 0.500000 0.500000 0.500000
