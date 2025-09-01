@@ -116,7 +116,7 @@ minecraft {
 
 mixin {
     // MixinGradle Settings
-    add sourceSets.main, 'mixins.monilabs.refmap.json'
+    add sourceSets.main, 'mixins.phoenixcore.refmap.json'
     config 'phoenixcore.mixins.json'
 }
 apply from: "$rootDir/gradle/scripts/spotless.gradle"
