@@ -2,7 +2,7 @@
   "parent": "minecraft:block/block",
   "dynamic_renders": [
     {
-      "type": "phoenixcore:artificial_star"
+      "type": "phoenixcore:plasma_arc_furnace"
     }
   ],
   "loader": "gtceu:machine",

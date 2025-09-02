@@ -3,7 +3,7 @@
   "loader": "forge:obj",
   "model": "phoenixcore:models/obj/star.obj",
   "textures": {
-    "texture0": "phoenixcore:block/obj/star_layer",
-    "particle":"phoenixcore:block/obj/star_layer"
+    "texture0": "phoenixcore:block/obj/space_layer",
+    "particle":"phoenixcore:block/obj/space_layer"
   }
 }

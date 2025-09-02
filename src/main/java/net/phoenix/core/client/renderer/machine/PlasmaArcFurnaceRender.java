@@ -24,30 +24,36 @@ import org.joml.Quaternionf;
 
 import java.util.List;
 
-public class ArtificialStarRender extends DynamicRender<WorkableElectricMultiblockMachine, ArtificialStarRender> {
+public class PlasmaArcFurnaceRender extends DynamicRender<WorkableElectricMultiblockMachine, PlasmaArcFurnaceRender> {
 
-    public static final ArtificialStarRender INSTANCE = new ArtificialStarRender();
-    public static final Codec<ArtificialStarRender> CODEC = Codec.unit(ArtificialStarRender.INSTANCE);
-    public static final DynamicRenderType<WorkableElectricMultiblockMachine, ArtificialStarRender> TYPE = new DynamicRenderType<>(
-            ArtificialStarRender.CODEC);
+    public static final PlasmaArcFurnaceRender INSTANCE = new PlasmaArcFurnaceRender();
+    public static final Codec<PlasmaArcFurnaceRender> CODEC = Codec.unit(PlasmaArcFurnaceRender.INSTANCE);
+    public static final DynamicRenderType<WorkableElectricMultiblockMachine, PlasmaArcFurnaceRender> TYPE = new DynamicRenderType<>(
+            PlasmaArcFurnaceRender.CODEC);
 
-    public static final ResourceLocation ARTIFICIAL_STAR_MODEL_RL = phoenixcore.id("obj/blue_star");
+    // CHANGE: Load two different models
+    public static final ResourceLocation SPHERE_MODEL_RL = phoenixcore.id("obj/blue_star"); // Or a new model for the
+                                                                                            // sphere
+    public static final ResourceLocation RINGS_MODEL_RL = phoenixcore.id("obj/rings");
 
-    private static BakedModel artificialStarModel;
+    private static BakedModel sphereModel;
+    private static BakedModel ringsModel;
     private static final RandomSource random = RandomSource.create();
 
-    // --- CONSTANTES ADICIONADAS PARA CONTROLE DA ROTAÇÃO ---
-    private static final float ROTATION_SPEED = 0.025F; // Velocidade base do movimento
-    private static final float MAX_ROTATION_ANGLE = 30.0F; // Amplitude máxima do movimento principal
+    // --- CONSTANTS ADDED FOR ROTATION CONTROL ---
+    private static final float ROTATION_SPEED = 0.025F; // Base speed of movement
+    private static final float MAX_ROTATION_ANGLE = 30.0F; // Maximum amplitude of the main movement
+    private static final float RINGS_ROTATION_SPEED = 0.5F; // New constant for rings rotation speed
 
-    private ArtificialStarRender() {
+    private PlasmaArcFurnaceRender() {
         ModelUtils.registerBakeEventListener(true, event -> {
-            artificialStarModel = event.getModels().get(ARTIFICIAL_STAR_MODEL_RL);
+            sphereModel = event.getModels().get(SPHERE_MODEL_RL);
+            ringsModel = event.getModels().get(RINGS_MODEL_RL);
         });
     }
 
     @Override
-    public DynamicRenderType<WorkableElectricMultiblockMachine, ArtificialStarRender> getType() {
+    public DynamicRenderType<WorkableElectricMultiblockMachine, PlasmaArcFurnaceRender> getType() {
         return TYPE;
     }
 
@@ -59,8 +65,6 @@ public class ArtificialStarRender extends DynamicRender<WorkableElectricMultiblo
         }
 
         float tick = (machine.getOffsetTimer() + partialTick);
-
-        // Lógica de posicionamento (sem alterações)
         // Center of the multiblock
         double x = 0.5;
         double y = 2.5; // a little above the controller block
@@ -77,38 +81,40 @@ public class ArtificialStarRender extends DynamicRender<WorkableElectricMultiblo
         poseStack.pushPose();
         poseStack.translate(x, y, z);
 
-        renderArtificialStar(tick, poseStack, buffer, packedOverlay);
+        // Render the sphere and rings
+        renderCelestialObject(tick, poseStack, buffer, packedOverlay);
 
         poseStack.popPose();
     }
 
-    private void renderArtificialStar(float tick, PoseStack poseStack, MultiBufferSource buffer, int packedOverlay) {
-        if (artificialStarModel == null) return;
+    private void renderCelestialObject(float tick, PoseStack poseStack, MultiBufferSource buffer, int packedOverlay) {
+        if (sphereModel == null || ringsModel == null) return;
         poseStack.pushPose();
 
-        // Lógica de rotação em formato de símbolo do infinito
+        // Overall rotation of the entire object (sphere + rings)
         float angleY = MAX_ROTATION_ANGLE * (float) Math.sin(tick * ROTATION_SPEED);
         float angleX = (MAX_ROTATION_ANGLE / 2.0f) * (float) Math.sin(tick * ROTATION_SPEED * 2.0f);
-
         poseStack.mulPose(new Quaternionf().fromAxisAngleDeg(0.0F, 1.0F, 0.0F, angleY));
         poseStack.mulPose(new Quaternionf().fromAxisAngleDeg(1.0F, 0.0F, 0.0F, angleX));
 
-        // Lógica de renderização dupla para efeito de bloom
-
-        // 1. Renderiza a estrela principal (interna, SÓLIDA e MENOR)
+        // 1. Renders the main star (internal, SOLID and SMALLER)
         poseStack.pushPose();
-        // ALTERADO: Escala diminuída para 0.40F
-        poseStack.scale(0.40F, 0.40F, 0.40F);
-        // ALTERADO: Usando solidBlockSheet para garantir que seja opaca
-        renderModel(poseStack, buffer.getBuffer(Sheets.solidBlockSheet()), artificialStarModel, 1.0F, 1.0F, 1.0F, 1.0f,
+        // CHANGED: Scale reduced to 0.40F
+        poseStack.scale(0.1F, 0.1F, 0.1F);
+        // CHANGED: Using solidBlockSheet to ensure it is opaque
+        renderModel(poseStack, buffer.getBuffer(Sheets.solidBlockSheet()), sphereModel, 1.0F, 1.0F, 1.0F, 1.0f,
                 LightTexture.FULL_BRIGHT, packedOverlay);
         poseStack.popPose();
 
-        // 2. Renderiza a aura de brilho (externa, MENOR e semi-transparente)
+        // 2. Renders the glow aura (external, SMALLER and semi-transparent)
         poseStack.pushPose();
-        // ALTERADO: Escala diminuída para 0.50F
-        poseStack.scale(0.407F, 0.407F, 0.407F);
-        renderModel(poseStack, buffer.getBuffer(RenderType.cutout()), artificialStarModel, 1.0F, 1.0F, 1.0F, 0.6F,
+
+        // ADDED: Rotate the rings on a different axis and with a different speed
+        float ringsAngle = (tick * RINGS_ROTATION_SPEED) % 360;
+        poseStack.mulPose(new Quaternionf().fromAxisAngleDeg(0.0F, 1.0F, 0.0F, ringsAngle));
+
+        poseStack.scale(0.15F, 0.15F, 0.15F); // Adjust scale as needed
+        renderModel(poseStack, buffer.getBuffer(RenderType.cutout()), ringsModel, 1.0F, 1.0F, 1.0F, 0.6F,
                 LightTexture.FULL_BRIGHT, packedOverlay);
         poseStack.popPose();
 

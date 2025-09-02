@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.phoenix.core.client.renderer.machine.ArtificialStarRender;
 import net.phoenix.core.client.renderer.machine.EyeOfHarmonyRender;
+import net.phoenix.core.client.renderer.machine.PlasmaArcFurnaceRender;
 import net.phoenix.core.phoenixcore;
 
 @Mod.EventBusSubscriber(modid = phoenixcore.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -20,6 +21,7 @@ public class PhoenixClient {
         modBus.register(PhoenixClient.class);
         DynamicRenderManager.register(phoenixcore.id("eye_of_harmony"), EyeOfHarmonyRender.TYPE);
         DynamicRenderManager.register(phoenixcore.id("artificial_star"), ArtificialStarRender.TYPE);
+        DynamicRenderManager.register(phoenixcore.id("plasma_arc_furnace"), PlasmaArcFurnaceRender.TYPE);
     }
 
     @SubscribeEvent
@@ -28,5 +30,7 @@ public class PhoenixClient {
         event.register(EyeOfHarmonyRender.STAR_MODEL_RL);
         EyeOfHarmonyRender.ORBIT_OBJECTS_RL.forEach(event::register);
         event.register(ArtificialStarRender.ARTIFICIAL_STAR_MODEL_RL);
+        event.register(PlasmaArcFurnaceRender.RINGS_MODEL_RL);
+        event.register(PlasmaArcFurnaceRender.SPHERE_MODEL_RL);
     }
 }

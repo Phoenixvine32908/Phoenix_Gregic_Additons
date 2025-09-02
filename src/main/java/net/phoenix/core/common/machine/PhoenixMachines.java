@@ -165,7 +165,8 @@ public class PhoenixMachines {
                                     phoenixcore.id("block/akashic_coil_block"),
                                     GTCEu.id("block/multiblock/generator/large_gas_turbine"))
                                     .andThen(d -> d
-                                            .addDynamicRenderer(CosmicDynamicRenderHelpers::getArtificialStarRender)))
+                                            .addDynamicRenderer(
+                                                    CosmicDynamicRenderHelpers::getPlasmaArcFurnaceRenderer)))
                     .hasBER(true)
                     .register();
         }
