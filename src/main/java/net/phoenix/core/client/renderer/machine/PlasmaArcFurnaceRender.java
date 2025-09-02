@@ -7,7 +7,6 @@ import com.gregtechceu.gtceu.client.util.ModelUtils;
 
 import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.resources.model.BakedModel;
@@ -72,10 +71,10 @@ public class PlasmaArcFurnaceRender extends DynamicRender<WorkableElectricMultib
 
         // Offset in front of the facing direction by 5 blocks
         switch (machine.getFrontFacing()) {
-            case NORTH -> z -= 5.0;
-            case SOUTH -> z += 5.0;
-            case WEST -> x -= 5.0;
-            case EAST -> x += 5.0;
+            case NORTH -> z -= 20.0;
+            case SOUTH -> z += 20.0;
+            case WEST -> x -= 20.0;
+            case EAST -> x += 20.0;
         }
 
         poseStack.pushPose();
@@ -113,8 +112,8 @@ public class PlasmaArcFurnaceRender extends DynamicRender<WorkableElectricMultib
         float ringsAngle = (tick * RINGS_ROTATION_SPEED) % 360;
         poseStack.mulPose(new Quaternionf().fromAxisAngleDeg(0.0F, 1.0F, 0.0F, ringsAngle));
 
-        poseStack.scale(0.15F, 0.15F, 0.15F); // Adjust scale as needed
-        renderModel(poseStack, buffer.getBuffer(RenderType.cutout()), ringsModel, 1.0F, 1.0F, 1.0F, 0.6F,
+        poseStack.scale(6.4F, 6.4F, 6.4F); // Adjust scale as needed
+        renderModel(poseStack, buffer.getBuffer(Sheets.solidBlockSheet()), ringsModel, 1.0F, 1.0F, 1.0F, 0.6F,
                 LightTexture.FULL_BRIGHT, packedOverlay);
         poseStack.popPose();
 
