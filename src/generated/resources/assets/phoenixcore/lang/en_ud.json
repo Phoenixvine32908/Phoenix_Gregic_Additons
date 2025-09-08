@@ -17,5 +17,14 @@
   "block.phoenixcore.true_heat_stable_coil_block": "ʞɔoןᗺ ןıoƆ ǝןqɐʇS ʇɐǝH ǝnɹ⟘",
   "block.phoenixcore.true_phoenix_infused_casing": "buısɐƆ pǝsnɟuI xıuǝoɥԀ ǝnɹ⟘ɔ§",
   "block.phoenixcore.twisted_computer_casing": "buısɐƆ ɹǝʇndɯoƆ pǝʇsıʍ⟘ϛ§",
-  "item.phoenixcore.basic_fuel_rod": "poᴚ ןǝnℲ ɔısɐᗺ"
+  "item.phoenixcore.basic_fuel_rod": "poᴚ ןǝnℲ ɔısɐᗺ",
+  "material.phoenixcore.eighty_five_percent_pure_nevvonian_steel": "ןǝǝʇS uɐıuoʌʌǝN ǝɹnԀ ʇuǝɔɹǝԀ ǝʌıℲ ʎʇɥbıƎ9§",
+  "material.phoenixcore.extremely_modified_space_grade_steel": "ןǝǝʇS ǝpɐɹ⅁ ǝɔɐdS pǝıɟıpoW ʎןǝɯǝɹʇxƎɔ§",
+  "material.phoenixcore.phoenix_enriched_tritanium": "ɯnıuɐʇıɹ⟘ pǝɥɔıɹuƎ xıuǝoɥԀɔ§",
+  "phoenixcore.tooltip.hyper_machine_1": ":ʇsooq ɐ sǝpıʌoɹd ʇuɐןooƆ ɥɔɐƎ",
+  "phoenixcore.tooltip.hyper_machine_coolant1": "ʇ/∩MƆ x%s :%s",
+  "phoenixcore.tooltip.hyper_machine_coolant2": "ʇ/∩MƆ x%s :%s",
+  "phoenixcore.tooltip.hyper_machine_coolant3": "ʇ/∩MƆ x%s :%s",
+  "phoenixcore.tooltip.hyper_machine_purpose": "buıןooɔ ǝpıʌoɹd oʇ %s ɹo '%s '%s sǝsn ʇɐɥʇ ⱯƆԀH pǝpɐɹbdn uⱯ",
+  "tagprefix.nanites": "sǝʇıuɐN %s"
 }

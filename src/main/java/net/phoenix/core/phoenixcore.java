@@ -27,11 +27,13 @@ import net.phoenix.core.client.PhoenixClient;
 import net.phoenix.core.common.block.PhoenixBlocks;
 import net.phoenix.core.common.data.PhoenixItems;
 import net.phoenix.core.common.data.PhoenixRecipeTypes;
+import net.phoenix.core.common.data.materials.PhoenixMaterialFlags;
 import net.phoenix.core.common.data.materials.PhoenixMaterials;
 import net.phoenix.core.common.machine.PhoenixMachines;
 import net.phoenix.core.common.machine.PhoenixResearchMachines;
 import net.phoenix.core.common.registry.PhoenixRegistration;
 import net.phoenix.core.configs.PhoenixConfigs;
+import net.phoenix.core.datagen.PhoenixDatagen;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import org.apache.logging.log4j.LogManager;
@@ -81,6 +83,8 @@ public class phoenixcore {
         PhoenixRegistration.REGISTRATE.registerRegistrate();
         PhoenixBlocks.init();
         PhoenixItems.init();
+        PhoenixMaterialFlags.init();
+        PhoenixDatagen.init();
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
@@ -139,7 +143,7 @@ public class phoenixcore {
      * @param event
      */
     private void modifyMaterials(PostMaterialEvent event) {
-        // CustomMaterials.modify();
+        PhoenixMaterials.modifyMaterials();
     }
 
     /**

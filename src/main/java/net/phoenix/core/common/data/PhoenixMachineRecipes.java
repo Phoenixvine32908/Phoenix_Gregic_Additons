@@ -44,6 +44,10 @@ public class PhoenixMachineRecipes {
                     .duration(1200)
                     .inputFluids(Acetone.getFluid(GTValues.L * 32))
                     .save(provider);
+            PhoenixRecipeTypes.PLEASE.recipeBuilder("modify")
+                    .inputFluids(Neutronium.getFluid(1))
+                    .duration(1200)
+                    .save(provider);
         }
     }
 }

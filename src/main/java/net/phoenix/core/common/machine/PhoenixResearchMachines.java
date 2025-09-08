@@ -1,6 +1,5 @@
 package net.phoenix.core.common.machine;
 
-import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MachineDefinition;
@@ -16,6 +15,7 @@ import net.phoenix.core.common.machine.multiblock.part.hpca.BasicPhoenixComputat
 import net.phoenix.core.common.machine.multiblock.part.hpca.BasicPhoenixCoolerPartMachine;
 import net.phoenix.core.common.machine.multiblock.part.hpca.PhoenixComputationPartMachine;
 import net.phoenix.core.common.machine.multiblock.part.hpca.PhoenixCoolerPartMachine;
+import net.phoenix.core.phoenixcore;
 
 import java.util.function.Function;
 
@@ -125,12 +125,12 @@ public class PhoenixResearchMachines {
                 .langValue(displayName)
                 .rotationState(RotationState.ALL)
                 .abilities(PartAbility.HPCA_COMPONENT)
-                .modelProperty(IS_FORMED, false)
+                .modelProperty(GTMachineModelProperties.IS_FORMED, false)
                 .modelProperty(GTMachineModelProperties.IS_HPCA_PART_DAMAGED, false)
                 .modelProperty(GTMachineModelProperties.IS_ACTIVE, false)
                 .model(createHPCAPartModel(isAdvanced,
-                        GTCEu.id("block/overlay/machine/hpca/cooling/" + texture),
-                        GTCEu.id("block/overlay/machine/hpca/damaged" + (isAdvanced ? "_advanced" : ""))));
+                        phoenixcore.id("block/overlay/machine/hpca/cooling/" + texture),
+                        phoenixcore.id("block/overlay/machine/hpca/damaged" + (isAdvanced ? "_advanced" : ""))));
     }
 
     private static MachineBuilder<MachineDefinition> registerComputationHPCAPart(String name, String displayName,
@@ -140,12 +140,13 @@ public class PhoenixResearchMachines {
                 .langValue(displayName)
                 .rotationState(RotationState.ALL)
                 .abilities(PartAbility.HPCA_COMPONENT)
-                .modelProperty(IS_FORMED, false)
+                .modelProperty(GTMachineModelProperties.IS_FORMED, false)
                 .modelProperty(GTMachineModelProperties.IS_HPCA_PART_DAMAGED, false)
                 .modelProperty(GTMachineModelProperties.IS_ACTIVE, false)
                 .model(createHPCAPartModel(isAdvanced,
-                        GTCEu.id("block/machine/part/hpca/computation/" + texture),
-                        GTCEu.id("block/machine/part/hpca/computation/damaged" + (isAdvanced ? "_advanced" : ""))));
+                        phoenixcore.id("block/machine/part/hpca/computation/" + texture),
+                        phoenixcore
+                                .id("block/machine/part/hpca/computation/damaged" + (isAdvanced ? "_advanced" : ""))));
     }
 
     public static void init() {}

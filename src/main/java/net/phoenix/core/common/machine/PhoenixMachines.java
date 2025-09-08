@@ -24,6 +24,7 @@ import net.minecraft.world.level.block.Block;
 import net.phoenix.core.client.renderer.machine.multiblock.CosmicDynamicRenderHelpers;
 import net.phoenix.core.common.block.PhoenixBlocks;
 import net.phoenix.core.common.data.PhoenixRecipeTypes;
+import net.phoenix.core.common.data.recipe.PhoenixRecipeModifiers;
 import net.phoenix.core.common.machine.multiblock.BlazingCleanroom;
 import net.phoenix.core.common.machine.multiblock.CreativeEnergyMultiMachine;
 import net.phoenix.core.common.machine.multiblock.electric.research.PhoenixHPCAMachine;
@@ -97,7 +98,7 @@ public class PhoenixMachines {
                     .langValue("dance")
                     .rotationState(RotationState.NON_Y_AXIS)
                     .recipeType(PhoenixRecipeTypes.PLEASE) // Agora isso não será mais nulo
-                    .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH,
+                    .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, PhoenixRecipeModifiers.HEAT_DRAWN,
                             GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
                     .pattern(definition -> FactoryBlockPattern.start()
                             .aisle("AAAAAABBBAABBBAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",

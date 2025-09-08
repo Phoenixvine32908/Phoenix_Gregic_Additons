@@ -511,11 +511,6 @@ public class PhoenixHPCAMachine extends WorkableElectricMultiblockMachine
             return temperatureChange;
         }
 
-        /**
-         * Get the coolant stack for this HPCA. Eventually this could be made more diverse with different
-         * coolants from different Active Cooler components, but currently it is just a fixed Fluid.
-         */
-
         private int getStrongestAvailableCoolantSlot(IFluidHandler tank) {
             Fluid[] fluids = new Fluid[] {
                     GTMaterials.get(PhoenixConfigs.INSTANCE.features.ActiveCoolerCoolant2).getFluid(), // slot 2

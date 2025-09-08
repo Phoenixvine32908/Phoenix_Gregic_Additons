@@ -3,9 +3,9 @@
   "flip_v": true,
   "model": "phoenixcore:models/obj/rings.obj",
   "textures": {
-    "texture0": "phoenixcore:block/obj/space_layer",
-    "texture1": "phoenixcore:block/obj/space_layer",
-    "texture2": "phoenixcore:block/obj/space_layer",
-    "particle":"phoenixcore:block/obj/space_layer"
+    "texture0": "phoenixcore:block/obj/purple_star_layer",
+    "texture1": "phoenixcore:block/obj/purple_star_layer",
+    "texture2": "phoenixcore:block/obj/purple_star_layer",
+    "particle":"phoenixcore:block/obj/purple_star_layer"
   }
 }

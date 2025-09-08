@@ -203,7 +203,7 @@ tasks.named('processResources', ProcessResources).configure {
     filesMatching("META-INF/mods.toml") {
         expand properties + [project: project]
     }
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 tasks.named('jar', Jar).configure { finalizedBy 'reobfJar' }
