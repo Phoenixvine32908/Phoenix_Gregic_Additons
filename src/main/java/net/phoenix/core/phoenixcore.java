@@ -36,6 +36,7 @@ import net.phoenix.core.configs.PhoenixConfigs;
 import net.phoenix.core.datagen.PhoenixDatagen;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
+import net.phoenix.core.datagen.PhoenixModels;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
