@@ -7,7 +7,7 @@ Most assets and code are licensed under LPGL 3.0 as I use code/assets from other
 
 However for the code involving cleanroom and hpca componet parts, these are an exception as these are licensed under MIT
 
-There is currently a bug if you decide to only use jei. The recipes won't show up *gasp*.
+There is currently a bug if you decide to only use jei (Not present if you use emi or jei+emi). The recipes won't show up *gasp*. To fix it all you need to do is pop the below example into your Kubejs/client_scripts folder.
 
 ```js title="manual_recipe_showing_fix.js"
 JEIEvents.addItems(event => {
