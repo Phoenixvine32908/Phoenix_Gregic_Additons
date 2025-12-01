@@ -25,8 +25,16 @@ JEIEvents.addItems(event => {
     event.add('phoenix_gregic_additons:reliable_naquadah_alloy_machine_casing')
     event.add('phoenix_gregic_additons:space_time_cooled_eternity_casing')
     event.add('phoenix_gregic_additons:true_phoenix_infused_casing')
+    event.add('phoenix_gregic_additons:uhv_solar_panel')
+    event.add('phoenix_gregic_additons:uev_solar_panel')
+    event.add('phoenix_gregic_additons:uiv_solar_panel')
+    event.add('phoenix_gregic_additons:uxv_solar_panel')
+    event.add('phoenix_gregic_additons:opv_solar_panel')
+    event.add('phoenix_gregic_additons:max_solar_panel')
 })
 ```
+
+
 
 ## Credit
 - Thanks to Ezlych of Sky Of Grind for providing the textures for the Phoenix HPCA Componets[Ezlych/RianGomita](https://github.com/RianGomita)
