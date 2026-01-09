@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.client.model.data.ModelData;
-import net.phoenix.core.phoenixcore;
+import net.phoenix.core.PhoenixGregicAdditons;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -31,9 +31,10 @@ public class PlasmaArcFurnaceRender extends DynamicRender<WorkableElectricMultib
             PlasmaArcFurnaceRender.CODEC);
 
     // CHANGE: Load two different models
-    public static final ResourceLocation SPHERE_MODEL_RL = phoenixcore.id("obj/blue_star"); // Or a new model for the
-                                                                                            // sphere
-    public static final ResourceLocation RINGS_MODEL_RL = phoenixcore.id("obj/rings");
+    public static final ResourceLocation SPHERE_MODEL_RL = PhoenixGregicAdditons.id("obj/blue_star"); // Or a new model
+                                                                                                      // for the
+    // sphere
+    public static final ResourceLocation RINGS_MODEL_RL = PhoenixGregicAdditons.id("obj/rings");
 
     private static BakedModel sphereModel;
     private static BakedModel ringsModel;

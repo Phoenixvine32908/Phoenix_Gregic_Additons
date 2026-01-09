@@ -1,6 +1,6 @@
 package net.phoenix.core.configs;
 
-import net.phoenix.core.phoenixcore;
+import net.phoenix.core.PhoenixGregicAdditons;
 
 import dev.toma.configuration.Configuration;
 import dev.toma.configuration.config.Config;
@@ -8,7 +8,7 @@ import dev.toma.configuration.config.ConfigHolder;
 import dev.toma.configuration.config.Configurable;
 import dev.toma.configuration.config.format.ConfigFormats;
 
-@Config(id = phoenixcore.MOD_ID)
+@Config(id = PhoenixGregicAdditons.MOD_ID)
 public class PhoenixConfigs {
 
     public static PhoenixConfigs INSTANCE;
@@ -27,9 +27,6 @@ public class PhoenixConfigs {
 
         // Features
         @Configurable
-        @Configurable.Comment({ "Whether the Creative Energy Multiblock is enabled" })
-        public boolean creativeEnergyEnabled = true;
-        @Configurable
         @Configurable.Comment({ "Whether the Blazing Maintence Hatch is enabled" })
         public boolean blazingHatchEnabled = true;
         @Configurable
@@ -44,6 +41,9 @@ public class PhoenixConfigs {
         @Configurable.Comment({
                 "Whether the Custom Phoenix HPCA multiblock is enabled" })
         public boolean PHPCAEnabled = true;
+        @Configurable
+        @Configurable.Comment({ "Whether recipes for the machines are enabled" })
+        public boolean recipesEnabled = true;
 
         // COMPUTATION
 
@@ -126,5 +126,10 @@ public class PhoenixConfigs {
         @Configurable.Comment({
                 "What Strongest Coolant the Active Phoenix Cooler uses when in the PHPCA (Gt or GT Kubejs Material)" })
         public double CoolantBoost2 = 1.2;
+
+        @Configurable
+        @Configurable.Comment({
+                "Whether the UHV to MAX solar panels are enabled" })
+        public boolean SolarsEnabled = false;
     }
 }

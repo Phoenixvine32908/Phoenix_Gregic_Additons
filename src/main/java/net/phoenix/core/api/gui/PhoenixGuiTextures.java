@@ -6,5 +6,5 @@ import com.lowdragmc.lowdraglib.gui.texture.ResourceTexture;
 public class PhoenixGuiTextures {
 
     public static final ResourceTexture PHOENIX_HPCA_COMPONENT_OUTLINE = new ResourceTexture(
-            "phoenixcore:textures/gui/widget/hpca/component_outline.png");
+            "phoenix_gregic_additons:textures/gui/widget/hpca/component_outline.png");
 }

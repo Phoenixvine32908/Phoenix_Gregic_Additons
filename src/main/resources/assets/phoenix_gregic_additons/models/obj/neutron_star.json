@@ -1,0 +1,9 @@
+{
+  "flip_v": true,
+  "loader": "forge:obj",
+  "model": "phoenix_gregic_additons:models/obj/star.obj",
+  "textures": {
+    "texture0": "phoenix_gregic_additons:block/obj/neutron_star_layer",
+    "particle":"phoenix_gregic_additons:block/obj/neutron_star_layer"
+  }
+}

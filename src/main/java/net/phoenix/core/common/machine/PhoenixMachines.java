@@ -9,8 +9,6 @@ import com.gregtechceu.gtceu.api.machine.MetaMachine;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
-import com.gregtechceu.gtceu.api.pattern.Predicates;
-import com.gregtechceu.gtceu.api.recipe.OverclockingLogic;
 import com.gregtechceu.gtceu.api.registry.registrate.MachineBuilder;
 import com.gregtechceu.gtceu.common.data.*;
 import com.gregtechceu.gtceu.common.data.machines.GTResearchMachines;
@@ -20,16 +18,11 @@ import com.gregtechceu.gtceu.data.lang.LangHandler;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
-import net.minecraft.world.level.block.Block;
-import net.phoenix.core.client.renderer.machine.multiblock.CosmicDynamicRenderHelpers;
+import net.phoenix.core.PhoenixGregicAdditons;
 import net.phoenix.core.common.block.PhoenixBlocks;
-import net.phoenix.core.common.data.PhoenixRecipeTypes;
-import net.phoenix.core.common.data.recipe.PhoenixRecipeModifiers;
 import net.phoenix.core.common.machine.multiblock.BlazingCleanroom;
-import net.phoenix.core.common.machine.multiblock.CreativeEnergyMultiMachine;
 import net.phoenix.core.common.machine.multiblock.electric.research.PhoenixHPCAMachine;
 import net.phoenix.core.configs.PhoenixConfigs;
-import net.phoenix.core.phoenixcore;
 
 import java.util.Locale;
 import java.util.function.BiFunction;
@@ -37,18 +30,17 @@ import java.util.function.BiFunction;
 import static com.gregtechceu.gtceu.api.GTValues.*;
 import static com.gregtechceu.gtceu.api.pattern.Predicates.*;
 import static com.gregtechceu.gtceu.common.data.GTBlocks.*;
-import static com.gregtechceu.gtceu.common.data.models.GTMachineModels.createWorkableCasingMachineModel;
 import static net.phoenix.core.common.registry.PhoenixRegistration.REGISTRATE;
 import static net.phoenix.core.configs.PhoenixConfigs.INSTANCE;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("all")
 public class PhoenixMachines {
 
     public static MultiblockMachineDefinition DANCE = null;
     public static MachineDefinition BLAZING_CLEANING_MAINTENANCE_HATCH = null;
     public static MachineDefinition HIGH_YEILD_PHOTON_EMISSION_REGULATER = null;
     static {
-        REGISTRATE.creativeModeTab(() -> phoenixcore.PHOENIX_CREATIVE_TAB);
+        REGISTRATE.creativeModeTab(() -> PhoenixGregicAdditons.PHOENIX_CREATIVE_TAB);
     }
 
     static {
@@ -57,7 +49,7 @@ public class PhoenixMachines {
                     .machine("blazing_cleaning_maintenance_hatch",
                             holder -> new CleaningMaintenanceHatchPartMachine(holder,
                                     BlazingCleanroom.BLAZING_CLEANROOM))
-                    .langValue("Blazing Cleaning Maintenance Hatch")
+                    .langValue("§cBlazing Cleaning Maintenance Hatch")
                     .rotationState(RotationState.ALL)
                     .abilities(PartAbility.MAINTENANCE)
                     .tooltips(Component.translatable("gtceu.part_sharing.disabled"),
@@ -69,7 +61,7 @@ public class PhoenixMachines {
                     .tier(UHV)
 
                     .overlayTieredHullModel(
-                            phoenixcore.id("block/machine/part/overlay_maintenance_blazing_cleaning"))
+                            PhoenixGregicAdditons.id("block/machine/part/overlay_maintenance_blazing_cleaning"))
                     // Tier can always be changed later
                     .register();
         }
@@ -91,97 +83,12 @@ public class PhoenixMachines {
     }
 
     static {
-        if (PhoenixConfigs.INSTANCE.features.creativeEnergyEnabled) {
-            // 2. Mova toda a lógica de registro para dentro do método init()
-            DANCE = REGISTRATE
-                    .multiblock("dance", CreativeEnergyMultiMachine::new)
-                    .langValue("dance")
-                    .rotationState(RotationState.NON_Y_AXIS)
-                    .recipeType(PhoenixRecipeTypes.PLEASE) // Agora isso não será mais nulo
-                    .recipeModifiers(GTRecipeModifiers.PARALLEL_HATCH, PhoenixRecipeModifiers.HEAT_DRAWN,
-                            GTRecipeModifiers.ELECTRIC_OVERCLOCK.apply(OverclockingLogic.NON_PERFECT_OVERCLOCK_SUBTICK))
-                    .pattern(definition -> FactoryBlockPattern.start()
-                            .aisle("AAAAAABBBAABBBAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA")
-                            .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAAABBBBBBBBBBAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAABBAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA")
-                            .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAABBBBBBBBBBBBAAAAA", "AAAAAAABBBBBBBAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAABBBBAAAAAAAAA",
-                                    "AAAAAAAABBBBAAAAAAAAA", "AAAAAAAABBBBAAAAAAAAA", "AAAAAAAAABBAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA")
-                            .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAABBBAAAAAAABBAAAAA", "AAAAABBBBBBBBBBAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAABBBBBBBBBAAAAAA", "AAAAABBBBBBBBBBAAAAAA", "AAAAABBBBBBBBBBAAAAAA",
-                                    "AAAAABBBBBBBBBBAAAAAA")
-                            .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAAABAAAAAAAABBAAAAA", "AAAAABBBAABBBBBAAAAAA",
-                                    "AAAAAABBBBBBBBAAAAAAA", "AAAAAAABBBBBBAAAAAAAA", "AAAAAABBBBBBBBAAAAAAA",
-                                    "AAAAABBAAAAAAABBAAAAA", "AABBBBAAAAAAAAABBBBAA", "ABBBBBAAAAAAAAABBBBBA",
-                                    "ABBBBBBBBBBBBBBBAAAAA")
-                            .aisle("AAAAABBBBBBBBBBAAAAAA", "AAAAABBAAAAAABBAAAAAA", "AAAAAABBAAAAABAAAAAAA",
-                                    "AAAAAAABAAAABBAAAAAAA", "AAAAAAABAAAAABAAAAAAA", "AAAAAABBAAAAABAAAAAAA",
-                                    "AAAAABBAAAAAAABBBAAAA", "ABBBBBAAAAAAAAAABBBBA", "ABBAAAAAAAAAAAAABBBBB",
-                                    "BBBBBBBBBBBBBBBBBBBBB")
-                            .aisle("AAAAABBBBBBBBBBAAAAAA", "AAAAABBAAAAAABBAAAAAA", "AAAAAABBAAAAABAAAAAAA",
-                                    "AAAAAAABAAAABBAAAAAAA", "AAAAAAABAAAAABAAAAAAA", "AAAAAABBAAAAABAAAAAAA",
-                                    "AAAAABBAAAAAAABBBAAAA", "ABBBBBAAAAAAAAAABBBBA", "ABBAAAAAAAAAAAAABBBBB",
-                                    "BBBBBBBBBBBBBBBBBBBBB")
-                            .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAAABAAAAAAAABBAAAAA", "AAAAABBBAAAAABBAAAAAA",
-                                    "AAAAAABBBBBBBBAAAAAAA", "AAAAAAABBBBBBAAAAAAAA", "AAAAAABBBBBBBBAAAAAAA",
-                                    "AAAAABBAAAAAAABBAAAAA", "AABBBBAAAAAAAAABBBBAA", "ABBBBBAAAAAAAAABBBBBA",
-                                    "ABBBBBBBBBBBBBBBAAAAA")
-                            .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAABBBAAAAAAABBAAAAA", "AAAAAABBBBBBBBBAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAABBAAAAAAAAAA",
-                                    "AAAAAABBBBBBBBBAAAAAA", "AAAAABBBBBBBBBBAAAAAA", "AAAAABBBBBBBBBBAAAAAA",
-                                    "AAAAABBBBBBBBBBAAAAAA")
-                            .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAABBBBBBBBBBBBAAAAA", "AAAAAABBBBBBBBAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAABBBBAAAAAAAAA",
-                                    "AAAAAAAABBBBAAAAAAAAA", "AAAAAAAABBBBAAAAAAAAA", "AAAAAAAAABBAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA")
-                            .aisle("AAAABBBBBBBBBBBBAAAAA", "AAAAABBBBBBBBBBAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAABBAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA")
-                            .aisle("AAAAAABBBAABDBAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA", "AAAAAAAAAAAAAAAAAAAAA",
-                                    "AAAAAAAAAAAAAAAAAAAAI")
-                            .where("A", any())
-                            .where("I",
-                                    Predicates
-                                            .blocks(PartAbility.INPUT_ENERGY.getBlocks(GTValues.ZPM)
-                                                    .toArray(Block[]::new))
-                                            .setMaxGlobalLimited(2))
-                            .where('D', controller(blocks(definition.getBlock())))
-                            .where("B", blocks(BRONZE_HULL.get()).setMinGlobalLimited(575)
-                                    .or(Predicates.abilities(PartAbility.IMPORT_FLUIDS).setPreviewCount(1))
-                                    .or(Predicates.abilities(PartAbility.EXPORT_FLUIDS).setPreviewCount(1))
-                                    .or(autoAbilities(true, false, true)))
-                            .build())
-                    .model(
-                            createWorkableCasingMachineModel(
-                                    phoenixcore.id("block/akashic_coil_block"),
-                                    GTCEu.id("block/multiblock/generator/large_gas_turbine"))
-                                    .andThen(d -> d
-                                            .addDynamicRenderer(
-                                                    CosmicDynamicRenderHelpers::getPlasmaArcFurnaceRenderer)))
-                    .hasBER(true)
-                    .register();
-        }
-    }
-    Component myColoredText = Component.translatable("block.phoenixcore.high_yield_photon_emission_regulator")
-            .withStyle(style -> style.withColor(TextColor.fromRgb(0xFF00FF)));
-
-    static {
         if (PhoenixConfigs.INSTANCE.features.PHPCAEnabled) {
             // 2. Mova toda a lógica de registro para dentro do método init()
             HIGH_YEILD_PHOTON_EMISSION_REGULATER = REGISTRATE
                     .multiblock("high_yield_photon_emission_regulator", PhoenixHPCAMachine::new)
-                    .langValue("block.phoenixcore.high_yield_photon_emission_regulator")
-                    .tooltips(Component.translatable("phoenixcore.tooltip.hyper_machine_purpose",
+                    .langValue("§dHigh Yield Photon Emission Regulator (HPCA)")
+                    .tooltips(Component.translatable("phoenix_gregic_additions.tooltip.hyper_machine_purpose",
                             GTMaterials.get(INSTANCE.features.ActiveCoolerCoolantBase).getLocalizedName()
                                     .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
                                             .get(INSTANCE.features.ActiveCoolerCoolantBase).getMaterialARGB()))),
@@ -191,21 +98,21 @@ public class PhoenixMachines {
                             GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant2).getLocalizedName()
                                     .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
                                             .get(INSTANCE.features.ActiveCoolerCoolant2).getMaterialARGB())))),
-                            Component.translatable("phoenixcore.tooltip.hyper_machine_1"),
+                            Component.translatable("phoenix_gregic_additions.tooltip.hyper_machine_1"),
                             Component
-                                    .translatable("phoenixcore.tooltip.hyper_machine_coolant_base",
+                                    .translatable("phoenix_gregic_additions.tooltip.hyper_machine_coolant_base",
                                             GTMaterials.get(INSTANCE.features.ActiveCoolerCoolantBase)
                                                     .getLocalizedName(),
                                             INSTANCE.features.BaseCoolantBoost)
                                     .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
                                             .get(INSTANCE.features.ActiveCoolerCoolantBase).getMaterialARGB()))),
-                            Component.translatable("phoenixcore.tooltip.hyper_machine_coolant2",
+                            Component.translatable("phoenix_gregic_additions.tooltip.hyper_machine_coolant2",
                                     GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant1).getLocalizedName(),
                                     INSTANCE.features.CoolantBoost1)
                                     .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
                                             .get(INSTANCE.features.ActiveCoolerCoolant1).getMaterialARGB()))),
                             Component
-                                    .translatable("phoenixcore.tooltip.hyper_machine_coolant3",
+                                    .translatable("phoenix_gregic_additions.tooltip.hyper_machine_coolant3",
                                             GTMaterials.get(INSTANCE.features.ActiveCoolerCoolant2).getLocalizedName(),
                                             INSTANCE.features.CoolantBoost2)
                                     .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
@@ -284,7 +191,7 @@ public class PhoenixMachines {
                      * GTMachines.MAINTENANCE_HATCH.get().getRotationState().property,
                      * Direction.SOUTH) :
                      * COMPUTER_CASING.getDefaultState());
-                     * 
+                     *
                      * // a few example structures
                      * shapeInfo.add(builder.shallowCopy()
                      * .where('0', GTResearchMachines.HPCA_EMPTY_COMPONENT, Direction.WEST)
@@ -297,7 +204,7 @@ public class PhoenixMachines {
                      * .where('7', GTResearchMachines.HPCA_HEAT_SINK_COMPONENT, Direction.WEST)
                      * .where('8', GTResearchMachines.HPCA_EMPTY_COMPONENT, Direction.WEST)
                      * .build());
-                     * 
+                     *
                      * shapeInfo.add(builder.shallowCopy()
                      * .where('0', GTResearchMachines.HPCA_HEAT_SINK_COMPONENT, Direction.WEST)
                      * .where('1', GTResearchMachines.HPCA_COMPUTATION_COMPONENT, Direction.WEST)
@@ -309,7 +216,7 @@ public class PhoenixMachines {
                      * .where('7', GTResearchMachines.HPCA_COMPUTATION_COMPONENT, Direction.WEST)
                      * .where('8', GTResearchMachines.HPCA_HEAT_SINK_COMPONENT, Direction.WEST)
                      * .build());
-                     * 
+                     *
                      * shapeInfo.add(builder.shallowCopy()
                      * .where('0', GTResearchMachines.HPCA_HEAT_SINK_COMPONENT, Direction.WEST)
                      * .where('1', GTResearchMachines.HPCA_COMPUTATION_COMPONENT, Direction.WEST)
@@ -321,7 +228,7 @@ public class PhoenixMachines {
                      * .where('7', GTResearchMachines.HPCA_BRIDGE_COMPONENT, Direction.WEST)
                      * .where('8', GTResearchMachines.HPCA_HEAT_SINK_COMPONENT, Direction.WEST)
                      * .build());
-                     * 
+                     *
                      * shapeInfo.add(builder.shallowCopy()
                      * .where('0', GTResearchMachines.HPCA_HEAT_SINK_COMPONENT, Direction.WEST)
                      * .where('1', GTResearchMachines.HPCA_ADVANCED_COMPUTATION_COMPONENT, Direction.WEST)
@@ -333,7 +240,7 @@ public class PhoenixMachines {
                      * .where('7', GTResearchMachines.HPCA_ADVANCED_COMPUTATION_COMPONENT, Direction.WEST)
                      * .where('8', GTResearchMachines.HPCA_HEAT_SINK_COMPONENT, Direction.WEST)
                      * .build());
-                     * 
+                     *
                      * return shapeInfo;
                      * })
                      */

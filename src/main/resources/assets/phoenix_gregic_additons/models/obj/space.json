@@ -1,0 +1,9 @@
+{
+  "loader": "forge:obj",
+  "flip_v": true,
+  "model": "phoenix_gregic_additons:models/obj/space.obj",
+  "textures": {
+    "texture0": "phoenix_gregic_additons:block/obj/star_layer",
+    "particle":"phoenix_gregic_additons:block/obj/star_layer"
+  }
+}

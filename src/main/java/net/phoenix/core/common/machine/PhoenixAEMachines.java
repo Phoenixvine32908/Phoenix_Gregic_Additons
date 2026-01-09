@@ -1,0 +1,52 @@
+package net.phoenix.core.common.machine;
+
+import com.gregtechceu.gtceu.api.data.RotationState;
+import com.gregtechceu.gtceu.api.machine.MachineDefinition;
+import com.gregtechceu.gtceu.api.machine.multiblock.PartAbility;
+
+import net.minecraft.network.chat.Component;
+import net.phoenix.core.PhoenixGregicAdditons;
+import net.phoenix.core.integration.ae2.METagInputBusPartMachine;
+import net.phoenix.core.integration.ae2.METagInputHatchPartMachine;
+
+import static com.gregtechceu.gtceu.api.GTValues.UHV;
+import static net.phoenix.core.common.registry.PhoenixRegistration.REGISTRATE;
+
+public class PhoenixAEMachines {
+
+    public static final MachineDefinition ME_TAG_INPUT_BUS = REGISTRATE
+            .machine("me_tag_input_bus", METagInputBusPartMachine::new)
+            .tier(UHV)
+            .rotationState(RotationState.ALL)
+            .abilities(
+                    PartAbility.IMPORT_ITEMS,   // pulls items from AE2
+                    PartAbility.EXPORT_ITEMS    // allows GTCEu to extract items
+            )
+            .colorOverlayTieredHullModel(PhoenixGregicAdditons.id("block/me_tag_input_bus"))
+            .langValue("ME Tag Input Bus")
+            .tooltips(
+                    Component.literal("§6Tag‑based AE2 Item Import"),
+                    Component.literal("§7Matches items via tag expressions"),
+                    Component.literal("§7Maintains per‑item quotas"),
+                    Component.translatable("gtceu.part_sharing.enabled"))
+            .register();
+
+    public static final MachineDefinition ME_TAG_INPUT_HATCH = REGISTRATE
+            .machine("me_tag_input_hatch", METagInputHatchPartMachine::new)
+            .tier(UHV)
+            .rotationState(RotationState.ALL)
+            .abilities(
+                    PartAbility.IMPORT_FLUIDS,  // pulls fluids from AE2
+                    PartAbility.EXPORT_FLUIDS   // allows GTCEu to extract fluids
+            )
+            .colorOverlayTieredHullModel(PhoenixGregicAdditons.id("block/me_tag_input_hatch"))
+            .langValue("ME Tag Input Hatch")
+            .tooltips(
+                    Component.literal("§6Tag‑based AE2 Fluid Import"),
+                    Component.literal("§7Matches fluids via tag expressions"),
+                    Component.literal("§7Maintains per‑fluid quotas"),
+                    Component.translatable("gtceu.part_sharing.enabled"))
+            .register();
+
+    public static void init() {}
+}

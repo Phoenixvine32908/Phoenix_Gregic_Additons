@@ -12,8 +12,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
+import net.phoenix.core.PhoenixGregicAdditons;
 import net.phoenix.core.configs.PhoenixConfigs;
-import net.phoenix.core.phoenixcore;
 
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiFunction;
@@ -33,22 +33,13 @@ public class PhoenixBlocks {
                 .initialProperties(() -> Blocks.IRON_BLOCK)
                 .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
                 .blockstate((ctx, prov) -> prov.simpleBlock(ctx.getEntry(),
-                        prov.models().cubeAll(ctx.getName(), phoenixcore.id("block/" + texture))))
+                        prov.models().cubeAll(ctx.getName(), PhoenixGregicAdditons.id("block/" + texture))))
                 .lang(name)
                 .item(func)
                 .build()
                 .register();
     }
 
-    public static final BlockEntry<CoilBlock> COIL_TRUE_HEAT_STABLE = createCoilBlock(
-            PhoenixCoilBlock.CoilType.COIL_TRUE_HEAT_STABLE);
-
-    public static BlockEntry<Block> PHOENIX_ENRICHED_TRITANIUM_CASING = registerSimpleBlock(
-            "§6Extremely Heat-Stable Casing", "phoenix_enriched_tritanium_casing",
-            "phoenix_enriched_tritanium_casing", BlockItem::new);
-    public static BlockEntry<Block> PHOENIX_GAZE_PANEL = registerSimpleBlock(
-            "§cPhoenix Gaze Panel", "phoenix_gaze_panel",
-            "phoenix_gaze_panel", BlockItem::new);
     public static BlockEntry<Block> TRUE_PHOENIX_INFUSED_CASING = registerSimpleBlock(
             "§cTrue Phoenix Infused Casing", "true_phoenix_infused_casing",
             "true_phoenix_infused_casing", BlockItem::new);
@@ -67,9 +58,10 @@ public class PhoenixBlocks {
     public static BlockEntry<Block> SPACE_TIME_COOLED_ETERNITY_CASING = registerSimpleBlock(
             "§5Space Time Cooled Eternity Casing", "space_time_cooled_eternity_casing",
             "space_time_cooled_eternity_casing", BlockItem::new);
-    public static BlockEntry<Block> TWISTED_COMPUTER_CASING = registerSimpleBlock(
-            "§5Twisted Computer Casing", "twisted_computer_casing",
-            "twisted_computer_casing", BlockItem::new);
+    public static BlockEntry<Block> RELIABLE_NAQUADAH_ALLOY_MACHINE_CASING = registerSimpleBlock(
+            "§cReliable Naquadah Alloy Machine Casing", "reliable_naquadah_alloy_machine_casing",
+            "reliable_naquadah_alloy_machine_casing", BlockItem::new);
+
     static {
         if (PhoenixConfigs.INSTANCE.features.blazingCleanroomEnabled) {
             final BlockEntry<Block> BLAZING_CLEANROOM_FILTER_CASING = createCleanroomFilters(

@@ -17,5 +17,5 @@ However for the code involving cleanroom and hpca componet parts, these are an e
 - Thans to Ravemaker, Ensign Evident, and Qwerty from the Sky of Grind/Phoenix Forge Technologies discord for advice
 - Thanks to Monifactory for some of the textures [MoniFactory Github](https://github.com/ThePansmith/Monifactory)
 - Thanks to the GregTech Modern team for use of code such as HPCAMachine and the HPCAComponet classes [GTM Github](https://github.com/GregTechCEu/GregTech-Modern)
-- Thanks to Jurrejelle of the Gregtech Modern team for code help and advice(He's fixed a lot of bug's that impacted PFT and PhoenixCore devlopment so huge thanks)(https://github.com/jurrejelle)
+- Thanks to Jurrejelle of the Gregtech Modern team for code help and advice(He's fixed a lot of bug's that impacted PFT andphoenix_gregic_additons devlopment so huge thanks)(https://github.com/jurrejelle)
 

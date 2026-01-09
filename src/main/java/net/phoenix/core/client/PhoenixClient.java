@@ -2,21 +2,18 @@ package net.phoenix.core.client;
 
 import com.gregtechceu.gtceu.client.renderer.machine.DynamicRenderManager;
 
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.phoenix.core.PhoenixGregicAdditons;
 import net.phoenix.core.client.renderer.machine.ArtificialStarRender;
 import net.phoenix.core.client.renderer.machine.EyeOfHarmonyRender;
 import net.phoenix.core.client.renderer.machine.PlasmaArcFurnaceRender;
-import net.phoenix.core.common.block.PhoenixBlocks;
-import net.phoenix.core.phoenixcore;
 
-@Mod.EventBusSubscriber(modid = phoenixcore.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = PhoenixGregicAdditons.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class PhoenixClient {
 
     private PhoenixClient() {}
@@ -24,9 +21,9 @@ public class PhoenixClient {
     public static void init(IEventBus modBus) {
         // You can remove this line as the @Mod.EventBusSubscriber annotation handles registration
         // modBus.register(PhoenixClient.class);
-        DynamicRenderManager.register(phoenixcore.id("eye_of_harmony"), EyeOfHarmonyRender.TYPE);
-        DynamicRenderManager.register(phoenixcore.id("artificial_star"), ArtificialStarRender.TYPE);
-        DynamicRenderManager.register(phoenixcore.id("plasma_arc_furnace"), PlasmaArcFurnaceRender.TYPE);
+        DynamicRenderManager.register(PhoenixGregicAdditons.id("eye_of_harmony"), EyeOfHarmonyRender.TYPE);
+        DynamicRenderManager.register(PhoenixGregicAdditons.id("artificial_star"), ArtificialStarRender.TYPE);
+        DynamicRenderManager.register(PhoenixGregicAdditons.id("plasma_arc_furnace"), PlasmaArcFurnaceRender.TYPE);
     }
 
     @SubscribeEvent
@@ -44,7 +41,8 @@ public class PhoenixClient {
     public static void onClientSetup(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             // Register your coil block's render type here
-            ItemBlockRenderTypes.setRenderLayer(PhoenixBlocks.COIL_TRUE_HEAT_STABLE.get(), RenderType.cutoutMipped());
+            // ItemBlockRenderTypes.setRenderLayer(PhoenixBlocks.COIL_TRUE_HEAT_STABLE.get(),
+            // RenderType.cutoutMipped());
         });
     }
 }

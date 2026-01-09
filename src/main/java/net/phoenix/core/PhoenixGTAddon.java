@@ -5,6 +5,7 @@ import com.gregtechceu.gtceu.api.addon.IGTAddon;
 import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.phoenix.core.common.data.PhoenixCovers;
 import net.phoenix.core.common.data.PhoenixMachineRecipes;
 import net.phoenix.core.common.data.materials.PhoenixElements;
 
@@ -16,15 +17,17 @@ public class PhoenixGTAddon implements IGTAddon {
 
     @Override
     public GTRegistrate getRegistrate() {
-        return phoenixcore.EXAMPLE_REGISTRATE;
+        return PhoenixGregicAdditons.EXAMPLE_REGISTRATE;
     }
 
     @Override
-    public void initializeAddon() {}
+    public void initializeAddon() {
+        PhoenixCovers.init();
+    }
 
     @Override
     public String addonModId() {
-        return phoenixcore.MOD_ID;
+        return PhoenixGregicAdditons.MOD_ID;
     }
 
     @Override

@@ -1,0 +1,11 @@
+{
+  "loader": "forge:obj",
+  "flip_v": true,
+  "model": "phoenix_gregic_additons:models/obj/rings.obj",
+  "textures": {
+    "texture0": "phoenix_gregic_additons:block/obj/purple_star_layer",
+    "texture1": "phoenix_gregic_additons:block/obj/purple_star_layer",
+    "texture2": "phoenix_gregic_additons:block/obj/purple_star_layer",
+    "particle":"phoenix_gregic_additons:block/obj/purple_star_layer"
+  }
+}
