@@ -30,7 +30,7 @@ public class MixinCutterHook {
 
         ItemStack stack = player.getItemInHand(hand);
 
-        // Use registry names to avoid classloading issues with AE2 items
+
         var certusId = new net.minecraft.resources.ResourceLocation("ae2", "certus_quartz_cutting_knife");
         var netherId = new net.minecraft.resources.ResourceLocation("ae2", "nether_quartz_cutting_knife");
 
@@ -38,7 +38,7 @@ public class MixinCutterHook {
                 stack.is(ForgeRegistries.ITEMS.getValue(netherId));
 
         if (!isKnife) {
-            return; // Not a knife, let the normal machine GUI open
+            return;
         }
 
         var tile = level.getBlockEntity(hitResult.getBlockPos());
@@ -46,7 +46,6 @@ public class MixinCutterHook {
         if (tile instanceof IMachineBlockEntity machineHolder) {
             var metaMachine = machineHolder.getMetaMachine();
 
-            // Check if it's your Expanded Pattern Buffer
             if (metaMachine instanceof MEPatternBufferPartMachine bufferMachine) {
                 if (!level.isClientSide) {
                     MenuOpener.open(ContainerRenamer.TYPE, player, MenuLocators.forBlockEntity(tile));

@@ -47,7 +47,7 @@ public abstract class MixinContainerRenamer {
             return;
         }
 
-        // setter always exists on GTCEu buffers
+
         Consumer<String> setterFn = name -> {
             try {
                 meta.getClass().getMethod("setCustomName", String.class).invoke(meta, name);
@@ -63,9 +63,6 @@ public abstract class MixinContainerRenamer {
         ((ContainerRenamer) (Object) this).setValidMenu(true);
     }
 
-    /**
-     * Resolves AE2 / ExtendedAE MenuLocator indirection
-     */
     private Object resolveTarget(Object host, net.minecraft.world.entity.player.Player player) {
         if (!host.getClass().getSimpleName().contains("Locator")) {
             return host;
