@@ -6,9 +6,8 @@
   "mixins": [
       "DummyMixin",
     "MixinContainerRenamer",
-    "MixinCutterHook",
-    "MixinMEPatternBufferCustomName",
-    "MixinMEPatternBufferPartMachine"
+    "MEPatternBufferAccessor",
+    "MEPatternBufferInvoker"
   ],
   "client": [
   ],
