@@ -167,12 +167,12 @@ dependencies {
     modImplementation("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     modImplementation("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
     modRuntimeOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
-    modRuntimeOnly("curse.maven:jade-324717:5390389")
-    modCompileOnly("curse.maven:jade-324717:5390389")
     modImplementation("org.appliedenergistics:guideme:${guideme_version}")
     modImplementation("appeng:appliedenergistics2-forge:${appeng_version}")
     modImplementation("curse.maven:ex-pattern-provider-892005:7248944")
     modImplementation("curse.maven:glodium-957920:5226922")
+    modRuntimeOnly("curse.maven:jade-324717:5390389")
+    modCompileOnly("curse.maven:jade-324717:5390389")
 
 
     // GregTech and dependencies

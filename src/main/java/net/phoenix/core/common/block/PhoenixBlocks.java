@@ -1,10 +1,12 @@
 package net.phoenix.core.common.block;
 
+import com.gregtechceu.gtceu.GTCEu;
 import com.gregtechceu.gtceu.api.GTCEuAPI;
 import com.gregtechceu.gtceu.api.block.ICoilType;
 import com.gregtechceu.gtceu.api.block.IFilterType;
 import com.gregtechceu.gtceu.common.block.CoilBlock;
 import com.gregtechceu.gtceu.common.data.models.GTModels;
+import com.gregtechceu.gtceu.common.registry.GTRegistration;
 import com.gregtechceu.gtceu.data.recipe.CustomTags;
 
 import net.minecraft.world.item.BlockItem;
@@ -13,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.phoenix.core.PhoenixGregicAdditons;
+import net.phoenix.core.common.registry.PhoenixRegistration;
 import net.phoenix.core.configs.PhoenixConfigs;
 
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -61,6 +64,50 @@ public class PhoenixBlocks {
     public static BlockEntry<Block> RELIABLE_NAQUADAH_ALLOY_MACHINE_CASING = registerSimpleBlock(
             "§cReliable Naquadah Alloy Machine Casing", "reliable_naquadah_alloy_machine_casing",
             "reliable_naquadah_alloy_machine_casing", BlockItem::new);
+    public static BlockEntry<Block> PHOENIX_HIGH_POWER_CASING = registerSimpleBlock(
+            "§dPhoenix High Power Casing", "phoenix_high_power_casing",
+            "casings/high_power_casing", BlockItem::new);
+    public static final BlockEntry<Block> ADVANCED_PHOENIX_COMPUTER_CASING = REGISTRATE
+            .block("phoenix_advanced_computer_casing", Block::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+            .blockstate((ctx, prov) -> {
+                prov.simpleBlock(ctx.getEntry(),
+                        prov.models().getExistingFile(PhoenixGregicAdditons.id("block/casings/advanced_computer_casing")));
+            })
+            .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+            .item(BlockItem::new)
+            .build()
+            .register();
+    public static final BlockEntry<Block> PHOENIX_COMPUTER_HEAT_VENT = REGISTRATE
+            .block("phoenix_computer_heat_vent", Block::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+            .blockstate((ctx, prov) -> {
+                prov.simpleBlock(ctx.getEntry(),
+                        prov.models().getExistingFile(PhoenixGregicAdditons.id("block/phoenix_computer_heat_vent")));
+            })
+            .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+            .item(BlockItem::new)
+            .build()
+            .register();
+
+    public static final BlockEntry<Block> PHOENIX_COMPUTER_CASING = REGISTRATE
+            .block("phoenix_computer_casing", Block::new)
+            .initialProperties(() -> Blocks.IRON_BLOCK)
+            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
+            .blockstate((ctx, prov) -> {
+                prov.simpleBlock(ctx.getEntry(),
+                        prov.models().getExistingFile(PhoenixGregicAdditons.id("block/casings/computer_casing")));
+            })
+            .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
+            .item(BlockItem::new)
+            .build()
+            .register();
+
+
+
+
 
     static {
         if (PhoenixConfigs.INSTANCE.features.blazingCleanroomEnabled) {

@@ -47,7 +47,6 @@ public abstract class MixinContainerRenamer {
             return;
         }
 
-
         Consumer<String> setterFn = name -> {
             try {
                 meta.getClass().getMethod("setCustomName", String.class).invoke(meta, name);

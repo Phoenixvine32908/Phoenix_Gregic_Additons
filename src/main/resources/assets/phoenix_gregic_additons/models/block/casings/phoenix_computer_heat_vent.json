@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "phoenix_gregic_additions:block/casings/computer_heat_vent_top_bot",
+    "side": "phoenix_gregic_additions:block/casings/computer_heat_vent_side"
+  }
+}

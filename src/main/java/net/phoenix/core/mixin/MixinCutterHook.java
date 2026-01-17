@@ -30,7 +30,6 @@ public class MixinCutterHook {
 
         ItemStack stack = player.getItemInHand(hand);
 
-
         var certusId = new net.minecraft.resources.ResourceLocation("ae2", "certus_quartz_cutting_knife");
         var netherId = new net.minecraft.resources.ResourceLocation("ae2", "nether_quartz_cutting_knife");
 
