@@ -118,7 +118,7 @@ public class PhoenixMachines {
                                     .withStyle(style -> style.withColor(TextColor.fromRgb(GTMaterials
                                             .get(INSTANCE.features.ActiveCoolerCoolant2).getMaterialARGB()))))
                     .rotationState(RotationState.NON_Y_AXIS)
-                    .appearanceBlock(ADVANCED_COMPUTER_CASING)
+                    .appearanceBlock(PhoenixBlocks.ADVANCED_PHOENIX_COMPUTER_CASING)
                     .recipeType(GTRecipeTypes.DUMMY_RECIPES)
                     .tooltips(LangHandler.getMultiLang("gtceu.machine.high_performance_computation_array.tooltip"))
                     .pattern(definition -> FactoryBlockPattern.start()
@@ -244,7 +244,7 @@ public class PhoenixMachines {
                      * return shapeInfo;
                      * })
                      */
-                    .sidedWorkableCasingModel(GTCEu.id("block/casings/hpca/advanced_computer_casing"),
+                    .workableCasingModel(PhoenixGregicAdditons.id("block/casings/advanced_computer_casing/phoenix_advanced_computer_casing"),
                             GTCEu.id("block/multiblock/hpca"))
                     .register();
         }
