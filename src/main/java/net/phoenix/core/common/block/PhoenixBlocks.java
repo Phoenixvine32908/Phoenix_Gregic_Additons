@@ -67,46 +67,15 @@ public class PhoenixBlocks {
     public static BlockEntry<Block> PHOENIX_HIGH_POWER_CASING = registerSimpleBlock(
             "§dPhoenix High Power Casing", "phoenix_high_power_casing",
             "casings/high_power_casing", BlockItem::new);
-    public static final BlockEntry<Block> ADVANCED_PHOENIX_COMPUTER_CASING = REGISTRATE
-            .block("phoenix_advanced_computer_casing", Block::new)
-            .initialProperties(() -> Blocks.IRON_BLOCK)
-            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
-            .blockstate((ctx, prov) -> {
-                prov.simpleBlock(ctx.getEntry(),
-                        prov.models().getExistingFile(PhoenixGregicAdditons.id("block/casings/advanced_computer_casing")));
-            })
-            .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
-            .item(BlockItem::new)
-            .build()
-            .register();
-    public static final BlockEntry<Block> PHOENIX_COMPUTER_HEAT_VENT = REGISTRATE
-            .block("phoenix_computer_heat_vent", Block::new)
-            .initialProperties(() -> Blocks.IRON_BLOCK)
-            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
-            .blockstate((ctx, prov) -> {
-                prov.simpleBlock(ctx.getEntry(),
-                        prov.models().getExistingFile(PhoenixGregicAdditons.id("block/phoenix_computer_heat_vent")));
-            })
-            .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
-            .item(BlockItem::new)
-            .build()
-            .register();
-
-    public static final BlockEntry<Block> PHOENIX_COMPUTER_CASING = REGISTRATE
-            .block("phoenix_computer_casing", Block::new)
-            .initialProperties(() -> Blocks.IRON_BLOCK)
-            .properties(p -> p.isValidSpawn((state, level, pos, ent) -> false))
-            .blockstate((ctx, prov) -> {
-                prov.simpleBlock(ctx.getEntry(),
-                        prov.models().getExistingFile(PhoenixGregicAdditons.id("block/casings/computer_casing")));
-            })
-            .tag(CustomTags.MINEABLE_WITH_CONFIG_VALID_PICKAXE_WRENCH)
-            .item(BlockItem::new)
-            .build()
-            .register();
-
-
-
+    public static BlockEntry<Block> PHOENIX_COMPUTER_CASING = registerSimpleBlock(
+            "§dPhoenix Computer Casing", "phoenix_computer_casing",
+            "casings/computer_casing/phoenix_computer_casing", BlockItem::new);
+    public static BlockEntry<Block> ADVANCED_PHOENIX_COMPUTER_CASING = registerSimpleBlock(
+            "§dAdvanced Phoenix Computer Casing", "phoenix_advanced_computer_casing",
+            "casings/advanced_computer_casing/phoenix_advanced_computer_casing", BlockItem::new);
+    public static BlockEntry<Block> PHOENIX_COMPUTER_HEAT_VENT = registerSimpleBlock(
+            "§dPhoenix Computer Heat Vent", "phoenix_computer_heat_vent",
+            "casings/heat_vent/phoenix_computer_heat_vent", BlockItem::new);
 
 
     static {

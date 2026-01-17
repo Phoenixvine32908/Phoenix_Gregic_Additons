@@ -1,7 +1,8 @@
 {
-  "parent": "minecraft:block/cube_column",
+  "parent": "block/cube_bottom_top",
   "textures": {
-    "end": "phoenix_gregic_additions:block/casings/computer_heat_vent_top_bot",
-    "side": "phoenix_gregic_additions:block/casings/computer_heat_vent_side"
+    "bottom": "phoenix_gregic_additons:block/casings/heat_vent/phoenix_computer_heat_vent",
+    "side": "phoenix_gregic_additons:block/casings/heat_vent/phoenix_computer_heat_vent_side",
+    "top": "phoenix_gregic_additons:block/casings/heat_vent/phoenix_computer_heat_vent"
   }
 }
