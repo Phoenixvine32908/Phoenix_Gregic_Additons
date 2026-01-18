@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "phoenix_gregic_additons:block/casings/computer_casing/phoenix_computer_casing"
+  }
+}

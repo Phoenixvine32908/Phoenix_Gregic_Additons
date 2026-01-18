@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "phoenix_gregic_additons:block/casings/computer_casing"
+      "model": "phoenix_gregic_additons:block/phoenix_computer_casing"
     }
   }
 }
